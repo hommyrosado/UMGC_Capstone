@@ -1,10 +1,14 @@
-from flask import Flask, render_template, request, redirect, url_for, send_file
+import webbrowser
 import requests
-from pytube import YouTube
 import os
 
+from pytube import YouTube
+from dotenv import load_dotenv
+from flask import Flask, render_template, request, redirect, url_for, send_file
+
 app = Flask(__name__)
-YOUTUBE_API_KEY = 'AIzaSyD7X7Z5_U9e2Yk2vPj7-Hj69CNR6whp_Mg'  # Replace this with your actual API key
+load_dotenv()
+YOUTUBE_API_KEY = os.getenv('YOUTUBE_API_KEY')
 YOUTUBE_SEARCH_URL = 'https://www.googleapis.com/youtube/v3/search'
 DOWNLOAD_FOLDER = 'downloads'
 
@@ -50,4 +54,5 @@ def download(video_id):
     return send_file(output_path, as_attachment=True)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    webbrowser.open('http://127.0.0.1:80')
+    app.run(port=80)
