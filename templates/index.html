@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YouTube Creative Commons Search</title>
+    <style>
+        body { font-family: Arial; background: #f0f0f0; padding: 30px; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 10px; }
+        input[type="text"] { width: 100%; padding: 10px; margin: 10px 0; }
+        button { padding: 10px 20px; }
+        .video { margin-top: 20px; border-bottom: 1px solid #ccc; padding-bottom: 20px; }
+        .video img { width: 300px; display: block; }
+        .video a { text-decoration: none; color: black; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Search Free-to-Reuse YouTube Videos (Creative Commons)</h2>
+        <form method="POST" action="/">
+            <input type="text" name="query" placeholder="Search..." required>
+            <button type="submit">Search</button>
+        </form>
+
+        {% for video in videos %}
+            <div class="video">
+                <a href="{{ video.video_url }}" target="_blank">
+                    <img src="{{ video.thumbnail }}" alt="{{ video.title }}">
+                    <p>{{ video.title }}</p>
+                </a>
+                <a href="{{ url_for('download', video_id=video.video_id) }}">
+                    <button>Download</button>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
