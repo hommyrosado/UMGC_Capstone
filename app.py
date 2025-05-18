@@ -1,6 +1,7 @@
 import webbrowser
 import requests
 import os
+import re
 
 from pytube import YouTube
 from dotenv import load_dotenv
@@ -21,26 +22,43 @@ def index():
     videos = []
     if request.method == 'POST':
         query = request.form['query']
+
+        #validate input
+        match = re.search(r"(?:v=|youtu\.be/)([\w-]{11})", query)
+        if not match:
+            print("Invalid YouTube URL")
+            return render_template('index.html', videos = [])
+
+        video_id = match.group(1)
+
+        #call video endpoint at youtube
+        video_api_url = 'https://www.googleapis.com/youtube/v3/videos'
         params = {
-            'part': 'snippet',
-            'q': query,
-            'key': YOUTUBE_API_KEY,
-            'maxResults': 10,
-            'type': 'video',
-            'videoLicense': 'creativeCommon'
+            'part': 'snippet,contentDetails,status',
+            'id': video_id,
+            'key': YOUTUBE_API_KEY
         }
-        response = requests.get(YOUTUBE_SEARCH_URL, params=params)
+
+        response = requests.get(video_api_url, params=params)
         if response.status_code == 200:
             data = response.json()
-            for item in data['items']:
-                video_id = item['id']['videoId']
+            if data['items']:
+                video_data = data['items'][0]
+                license_type = video_data['status'].get('license')
+
+                if license_type != "creativeCommon":
+                    print("Video is not available for download")
+                    return render_template('index.html', videos = [])
+
                 video = {
-                    'title': item['snippet']['title'],
-                    'thumbnail': item['snippet']['thumbnails']['medium']['url'],
+                    'title': video_data['snippet']['title'],
+                    'thumbnail': video_data['snippet']['thumbnails']['medium']['url'],
                     'video_id': video_id,
                     'video_url': f"https://www.youtube.com/watch?v={video_id}"
                 }
                 videos.append(video)
+            else:
+                print("Video not found")
         else:
             print("API error:", response.text)
     return render_template('index.html', videos=videos)
