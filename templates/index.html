@@ -156,6 +156,88 @@
                 </a>
             </div>
         {% endfor %}
+
+        <!-- Reference https://www.w3schools.com/howto/howto_css_modals.asp
+     This modual pop was made from the resources of the www.w3schools.com link. This makes a pop up window appear before the end user is allowed to 
+     enter the site by clicking the I agree button. If they do not agree they will hit exit button which will redirect them to google, and not allow 
+     them to continue on forward with access to the website. The popup also includes a link to YouTube's user agreement policies.  -->
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Disclaimer</h2>
+            <p>This site only allows downloads of YouTube videos with the intent of academic learning, and videos labeled as <strong>Creative Commons</strong>.</p>
+            <p>By clicking "I Agree" you confirm that you understand and agree to comply with
+            <a href="https://www.youtube.com/t/terms" target="_blank">YouTube's Terms of Service</a>.</p>
+            <div style ="margin-top: 20px;">
+                <button onclick="agreeDisclaimer()">I Agree</button>
+                <button onclick="exitSite()" style="background:red; color:white; margin-left: 10px;">Exit</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+    .modal{
+        display: block;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        background-color: rgba(0,0,0,0.8);
+    }
+
+    .modal-content{
+        background-color: #fff;
+        margin: auto;
+        padding: 20px;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 600px;
+        font-family: Arial;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+
+    .close{
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus{
+        color: black;
+    }
+
+    </style>
+
+    <script>
+    var modal = document.getElementById("myModal");
+    var span =document.getElementsByClassName("close")[0];
+
+    span.onclick = function(){
+        exitSite();
+    }
+
+    function agreeDisclaimer(){
+        modal.style.display = "none";
+        document.body.style.overflow = "auto";
+    }
+
+    function exitSite() {
+        alert("You must agree to use this site.");
+        window.location.href = "https://www.google.com";
+    }
+
+    document.body.style.overflow = "hidden";
+    </script>
+        
     </div>
 </body>
 </html>
