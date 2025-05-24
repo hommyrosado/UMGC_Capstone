@@ -2,10 +2,11 @@ import webbrowser
 import requests
 import os
 import re
+import subprocess
+import glob
 
-from pytube import YouTube
 from dotenv import load_dotenv
-from flask import Flask, render_template, request, redirect, url_for, send_file
+from flask import Flask, render_template, request, redirect, url_for, send_file, abort
 
 app = Flask(__name__)
 load_dotenv()
@@ -80,15 +81,35 @@ def index():
             else:
                 print("API error:", response.text)
 
-    return render_template('index.html', videos=videos)
+    return render_template('index.html', videos = videos)
 
 @app.route('/download/<video_id>')
 def download(video_id):
     video_url = f"https://www.youtube.com/watch?v={video_id}"
-    yt = YouTube(video_url)
-    stream = yt.streams.get_highest_resolution()
-    output_path = stream.download(output_path=DOWNLOAD_FOLDER)
-    return send_file(output_path, as_attachment=True)
+
+    download_cmd = [
+        'yt-dlp',
+        'f', 'best',
+        video_url,
+        '-o', os.path.join(DOWNLOAD_FOLDER, '%(title)s.%(ext)s')
+    ]
+
+    try:
+        subprocess.run(download_cmd, check = True)
+
+        list_of_files = glob.glob(os.path.join(DOWNLOAD_FOLDER, '*'))
+        if not list_of_files:
+            return "No files found", 404
+
+        latest_file = max(list_of_files, key = os.path.getctime)
+        print("Sending file: ", latest_file)
+
+        return send_file(latest_file, as_attachment = True)
+    except subprocess.CalledProcessError:
+        return "Download failed", 500
+    except Exception as e:
+        print("Unexpected error:", e)
+        abort(500)
 
 if __name__ == '__main__':
     webbrowser.open('http://127.0.0.1:80')
