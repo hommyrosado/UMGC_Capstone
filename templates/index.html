@@ -137,27 +137,9 @@
     </div>
 </body>
 </html>
-
-    <div class="container">
-        <h2>Search Free-to-Reuse YouTube Videos (Creative Commons)</h2>
-        <form method="POST" action="/">
-            <input type="text" name="query" placeholder="Search..." required>
-            <button type="submit">Search</button>
-        </form>
-
-        {% for video in videos %}
-            <div class="video">
-                <a href="{{ video.video_url }}" target="_blank">
-                    <img src="{{ video.thumbnail }}" alt="{{ video.title }}">
-                    <p>{{ video.title }}</p>
-                </a>
-                <a href="{{ url_for('download', video_id=video.video_id) }}">
-                    <button>Download</button>
-                </a>
-            </div>
-        {% endfor %}
-
-        <!-- Reference https://www.w3schools.com/howto/howto_css_modals.asp
+  
+<!-- Disclaimer Modal -->
+     <!-- Reference https://www.w3schools.com/howto/howto_css_modals.asp
      This modual pop was made from the resources of the www.w3schools.com link. This makes a pop up window appear before the end user is allowed to 
      enter the site by clicking the I agree button. If they do not agree they will hit exit button which will redirect them to google, and not allow 
      them to continue on forward with access to the website. The popup also includes a link to YouTube's user agreement policies.  -->
@@ -241,3 +223,4 @@
     </div>
 </body>
 </html>
+
