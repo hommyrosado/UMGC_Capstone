@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>YouTube Creative Commons Search</title>
+    <title>Automatic YouTube Downloader</title>
     <style>
         body { font-family: Arial; background: #f0f0f0; padding: 30px; }
         .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 10px; }
@@ -12,7 +12,132 @@
         .video a { text-decoration: none; color: black; font-weight: bold; }
     </style>
 </head>
+<body><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Automatic YouTube Downloader – Creative Commons</title>
+    <style>
+        :root {
+            --primary: #0066cc;
+            --primary-dark: #004a99;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 40px 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fa;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 35px 45px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin: 0 0 .75rem;
+            font-size: 1.9rem;
+            color: #222;
+        }
+        .subheading,
+        .note,
+        .tip {
+            color: #555;
+            line-height: 1.45;
+        }
+        .subheading { margin-bottom: .8rem; }
+        .note { margin: 0 0 1rem; }
+        .tip { margin: 0 0 1.5rem; }
+        form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 2rem;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 12px 14px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        button {
+            padding: 12px 22px;
+            font-size: 1rem;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background .2s;
+        }
+        button:hover { background: var(--primary-dark); }
+        .videos { display: flex; flex-direction: column; gap: 25px; }
+        .video {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            background: #fafafa;
+            padding: 15px 20px;
+            border: 1px solid #e5e5e5;
+            border-radius: 10px;
+        }
+        .video img {
+            width: 200px;
+            border-radius: 6px;
+            flex-shrink: 0;
+        }
+        .video-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #000;
+            text-decoration: none;
+        }
+        .video-title:hover { text-decoration: underline; }
+        .video-content { flex: 1; }
+    </style>
+</head>
 <body>
+    <div class="container">
+        <h1>Automatic YouTube Downloader</h1>
+        <p class="subheading">Welcome! Enter the subject you wish to search videos for below.</p>
+        <p class="note"><strong>Note:</strong> You can only download videos that the creator has published under the <em>Creative Commons Attribution</em> license. If you don’t see a video your professor uploaded for you to use, please contact them directly.</p>
+        <p class="tip"><em>Tip:</em> Click a video’s thumbnail to watch it on YouTube before deciding to download.</p>
+
+        <form method="POST" action="/">
+            <input type="text" name="query" placeholder="e.g. Data Structures" required>
+            <button type="submit">Search</button>
+        </form>
+
+        <div class="videos">
+            {% for video in videos %}
+            <div class="video">
+                <a href="{{ video.video_url }}" target="_blank">
+                    <img src="{{ video.thumbnail }}" alt="{{ video.title }}">
+                </a>
+                <div class="video-content">
+                    <a href="{{ video.video_url }}" target="_blank" class="video-title">{{ video.title }}</a><br>
+                    <a href="{{ url_for('download', video_id=video.video_id) }}"><button>Download</button></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <footer class="footer">
+            <br>
+            <strong>Developed by:</strong><br>
+            Lane, Nicolas <br>
+            Hardwick, Sierra <br>
+            Leal, Joshua <br>
+            Moriggia, Anthony <br>
+            Rosado, Hommy <br><br>
+            UMGC CMSC&nbsp;495 &nbsp;|&nbsp; Last updated May 2025
+        </footer>
+    </div>
+</body>
+</html>
+
     <div class="container">
         <h2>Search Free-to-Reuse YouTube Videos (Creative Commons)</h2>
         <form method="POST" action="/">
