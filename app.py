@@ -8,6 +8,9 @@ import glob
 from dotenv import load_dotenv
 from flask import Flask, render_template, request, redirect, url_for, send_file, abort
 
+# TODO [Hommy, 2025-05-29]: Add error logging capabilities.
+# TODO [Hommy, 2025-05-29]: Examine vulnerabilities for risk mitigation.
+
 app = Flask(__name__)
 load_dotenv()
 YOUTUBE_API_KEY = os.getenv('YOUTUBE_API_KEY')
