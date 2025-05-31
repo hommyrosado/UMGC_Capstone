@@ -92,7 +92,7 @@ def download(video_id):
 
     download_cmd = [
         'yt-dlp',
-        'f', 'best',
+        '-f', 'best',
         video_url,
         '-o', os.path.join(DOWNLOAD_FOLDER, '%(title)s.%(ext)s')
     ]
