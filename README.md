@@ -28,3 +28,6 @@ TODO:
 - Error Logging
 - Discalmer review
 - Fix audio download
+- -gmail or google account OAuth
+
+  
