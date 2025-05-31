@@ -23,3 +23,8 @@ This is a Flask-based web application that allows users to download videosfrom p
 - HTML/CSS
 - JSON 
 
+TODO:
+- Sample progress bar or indicator of status
+- Error Logging
+- Discalmer review
+- 
