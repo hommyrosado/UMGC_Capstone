@@ -1,18 +1,4 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Automatic YouTube Downloader</title>
-    <style>
-        body { font-family: Arial; background: #f0f0f0; padding: 30px; }
-        .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 10px; }
-        input[type="text"] { width: 100%; padding: 10px; margin: 10px 0; }
-        button { padding: 10px 20px; }
-        .video { margin-top: 20px; border-bottom: 1px solid #ccc; padding-bottom: 20px; }
-        .video img { width: 300px; display: block; }
-        .video a { text-decoration: none; color: black; font-weight: bold; }
-    </style>
-</head>
-<body><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -97,13 +83,69 @@
         }
         .video-title:hover { text-decoration: underline; }
         .video-content { flex: 1; }
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #666;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: rgba(0,0,0,0.8);
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            font-family: Arial;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+        }
     </style>
+
+    <!-- Client-Side Error Logging -->
+    <script>
+    window.onerror = function(message, source, lineno, colno, error) {
+        fetch('/log_client_error', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                message,
+                source,
+                lineno,
+                colno,
+                stack: error?.stack || ''
+            })
+        });
+    };
+    </script>
 </head>
 <body>
     <div class="container">
         <h1>Automatic YouTube Downloader</h1>
         <p class="subheading">Welcome! Enter the subject you wish to search videos for below.</p>
-        <p class="note"><strong>Note:</strong> You can only download videos that the creator has published under the <em>Creative Commons Attribution</em> license. If you don’t see a video your professor uploaded for you to use, please contact them directly.</p>
+        <p class="note"><strong>Note:</strong> You can only download videos that the creator has published under the <em>Creative Commons Attribution</em> license.</p>
         <p class="tip"><em>Tip:</em> Click a video’s thumbnail to watch it on YouTube before deciding to download.</p>
 
         <form method="POST" action="/">
@@ -119,11 +161,14 @@
                 </a>
                 <div class="video-content">
                     <a href="{{ video.video_url }}" target="_blank" class="video-title">{{ video.title }}</a><br>
-                    <a href="{{ url_for('download', video_id=video.video_id) }}"><button>Download</button></a>
+                    <a href="{{ url_for('download', video_id=video.video_id) }}">
+                        <button>Download</button>
+                    </a>
                 </div>
             </div>
             {% endfor %}
         </div>
+
         <footer class="footer">
             <br>
             <strong>Developed by:</strong><br>
@@ -135,15 +180,8 @@
             UMGC CMSC&nbsp;495 &nbsp;|&nbsp; Last updated May 2025
         </footer>
     </div>
-</body>
-</html>
-  
-<!-- Disclaimer Modal -->
-     <!-- Reference https://www.w3schools.com/howto/howto_css_modals.asp
-     This modual pop was made from the resources of the www.w3schools.com link. This makes a pop up window appear before the end user is allowed to 
-     enter the site by clicking the I agree button. If they do not agree they will hit exit button which will redirect them to google, and not allow 
-     them to continue on forward with access to the website. The popup also includes a link to YouTube's user agreement policies.  -->
 
+    <!-- Disclaimer Modal -->
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -151,76 +189,48 @@
             <p>This site only allows downloads of YouTube videos with the intent of academic learning, and videos labeled as <strong>Creative Commons</strong>.</p>
             <p>By clicking "I Agree" you confirm that you understand and agree to comply with
             <a href="https://www.youtube.com/t/terms" target="_blank">YouTube's Terms of Service</a>.</p>
-            <div style ="margin-top: 20px;">
+            <div style="margin-top: 20px;">
                 <button onclick="agreeDisclaimer()">I Agree</button>
                 <button onclick="exitSite()" style="background:red; color:white; margin-left: 10px;">Exit</button>
             </div>
         </div>
     </div>
 
-    <style>
-    .modal{
-        display: block;
-        position: fixed;
-        z-index: 9999;
-        left: 0;
-        top: 0;
-        width: 100vw;
-        height: 100vh;
-        overflow: hidden;
-        background-color: rgba(0,0,0,0.8);
-    }
-
-    .modal-content{
-        background-color: #fff;
-        margin: auto;
-        padding: 20px;
-        border-radius: 10px;
-        width: 90%;
-        max-width: 600px;
-        font-family: Arial;
-        text-align: center;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    }
-
-
-    .close{
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-        cursor: pointer;
-    }
-
-    .close:hover,
-    .close:focus{
-        color: black;
-    }
-
-    </style>
-
+    <!-- Modal Behavior Script (with localStorage logic) -->
     <script>
-    var modal = document.getElementById("myModal");
-    var span =document.getElementsByClassName("close")[0];
+    document.addEventListener("DOMContentLoaded", function () {
+        const modal = document.getElementById("myModal");
+        const span = document.getElementsByClassName("close")[0];
 
-    span.onclick = function(){
-        exitSite();
-    }
+        if (localStorage.getItem("disclaimerAccepted") === "true") {
+            modal.style.display = "none";
+            document.body.style.overflow = "auto";
+        } else {
+            modal.style.display = "block";
+            document.body.style.overflow = "hidden";
+        }
 
-    function agreeDisclaimer(){
-        modal.style.display = "none";
-        document.body.style.overflow = "auto";
-    }
+        span.onclick = function () {
+            exitSite();
+        };
 
-    function exitSite() {
-        alert("You must agree to use this site.");
-        window.location.href = "https://www.google.com";
-    }
+        window.agreeDisclaimer = function () {
+            localStorage.setItem("disclaimerAccepted", "true");
+            modal.style.display = "none";
+            document.body.style.overflow = "auto";
+        };
 
-    document.body.style.overflow = "hidden";
+        window.exitSite = function () {
+            alert("You must agree to use this site.");
+            window.location.href = "https://www.google.com";
+        };
+
+        window.onclick = function (event) {
+            if (event.target === modal) {
+                exitSite();
+            }
+        };
+    });
     </script>
-        
-    </div>
 </body>
 </html>
-

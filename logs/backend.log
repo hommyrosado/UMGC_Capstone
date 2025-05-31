@@ -1,0 +1,50 @@
+2025-05-31 10:46:07,156 [ERROR] Exception in index route
+Traceback (most recent call last):
+  File "C:\Repos\UMGC_Capstone\app.py", line 87, in index
+    video_id = item['id']['videoId']
+               ~~~~~~~~~~^^^^^^^^^^^
+KeyError: 'videoId'
+2025-05-31 10:47:20,623 [ERROR] Exception in index route
+Traceback (most recent call last):
+  File "C:\Repos\UMGC_Capstone\app.py", line 87, in index
+    video_id = item['id']['videoId']
+               ~~~~~~~~~~^^^^^^^^^^^
+KeyError: 'videoId'
+2025-05-31 10:51:38,104 [ERROR] Exception in index route
+Traceback (most recent call last):
+  File "C:\Repos\UMGC_Capstone\app.py", line 87, in index
+    video_id = item['id']['videoId']
+               ~~~~~~~~~~^^^^^^^^^^^
+KeyError: 'videoId'
+2025-05-31 10:52:21,192 [ERROR] Exception in index route
+Traceback (most recent call last):
+  File "C:\Repos\UMGC_Capstone\app.py", line 87, in index
+    video_id = item['id']['videoId']
+               ~~~~~~~~~~^^^^^^^^^^^
+KeyError: 'videoId'
+2025-05-31 10:55:10,971 [ERROR] Unexpected error in download route
+Traceback (most recent call last):
+  File "C:\Repos\UMGC_Capstone\app.py", line 110, in download
+    subprocess.run(download_cmd, check=True)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\subprocess.py", line 1538, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+2025-05-31 10:59:49,693 [ERROR] Unexpected error in download route
+Traceback (most recent call last):
+  File "C:\Repos\UMGC_Capstone\app.py", line 110, in download
+    subprocess.run(download_cmd, check=True)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\subprocess.py", line 1538, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [WinError 2] The system cannot find the file specified
