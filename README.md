@@ -25,7 +25,7 @@ This is a Flask-based web application that allows users to download videosfrom p
 
 TODO:
 - Sample progress bar or indicator of status
-- Error Logging
+- Error Logging / risk mitications / Server and Clientside
 - Discalmer review
 - Fix audio download
 - -gmail or google account OAuth
