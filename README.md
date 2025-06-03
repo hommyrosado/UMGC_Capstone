@@ -31,4 +31,5 @@ TODO:
 - -gmail or google account OAuth
 - Playlist saving feature for differentiation of downloads (save by user specified groupings) - create subfolders in designated download folder
 - Progress bar?
+- Chrome @media rules test environment for multiple form factors. Dreamweaver also an option. Intellij or Visual Code may have extension.
 
