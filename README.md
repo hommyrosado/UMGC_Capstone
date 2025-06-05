@@ -25,11 +25,17 @@ This is a Flask-based web application that allows users to download videosfrom p
 
 TODO:
 - Sample progress bar or indicator of status
+  Implimented the yt-dlp Python API
 - Error Logging / risk mitications / Server and Clientside
-- Discalmer review
+  - Backend Logging: Already implemented!
+    Errors are logged to logs/backend.log 
+    via Python’s logging and TimedRotatingFileHandlerapp.
+  - Client Logging: Already implemented!
+    JavaScript window.onerror sends errors to /log_client_error, which logs to logs/client.log
+- ✅ Discalmer review - shows first time
 - Fix audio download
 - -gmail or google account OAuth
-- Playlist saving feature for differentiation of downloads (save by user specified groupings) - create subfolders in designated download folder
-- Progress bar?
+- Playlist saving feature for differentiation of downloads (save by user specified groupings) 
+  - create subfolders in designated download folder
 - Chrome @media rules test environment for multiple form factors. Dreamweaver also an option. Intellij or Visual Code may have extension.
 
