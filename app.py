@@ -11,23 +11,28 @@ from flask import Flask, render_template, request, redirect, url_for, send_file,
 # TODO [Hommy, 2025-05-29]: Add error logging capabilities.
 # TODO [Hommy, 2025-05-29]: Examine vulnerabilities for risk mitigation.
 
+# Initialize Flask app
 app = Flask(__name__)
+
+# Load environment variables from .env file
 load_dotenv()
 YOUTUBE_API_KEY = os.getenv('YOUTUBE_API_KEY')
 YOUTUBE_SEARCH_URL = 'https://www.googleapis.com/youtube/v3/search'
 DOWNLOAD_FOLDER = 'downloads'
 
-# Create downloads folder if it doesn't exist
+# Create a download folder if it doesn't already exist
 if not os.path.exists(DOWNLOAD_FOLDER):
     os.makedirs(DOWNLOAD_FOLDER)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     videos = []
+
     if request.method == 'POST':
+        # Get search input and clean it up
         query = request.form['query'].strip()
 
-        #validate if the input is a YouTube link
+        # Check if the query is a YouTube video URL
         match = re.search(r"(?:v=|youtu\.be/)([\w-]{11})", query)
         if match:
             # --- Handle YouTube link input ---
@@ -38,6 +43,8 @@ def index():
                 'id': video_id,
                 'key': YOUTUBE_API_KEY
             }
+
+            # Make request to YouTube Data API
             response = requests.get(video_api_url, params=params)
             if response.status_code == 200:
                 data = response.json()
@@ -46,10 +53,12 @@ def index():
                     status = video_data.get('status', {})
                     license_type = status.get('license', 'unknown')
 
+                    # Ensure video is Creative Commons licensed
                     if license_type != 'creativeCommon':
                         print("Video is not Creative Commons")
                         return render_template('index.html', videos=[])
 
+                    # Append video details to be displayed on the frontend
                     video = {
                         'title': video_data['snippet']['title'],
                         'thumbnail': video_data['snippet']['thumbnails']['medium']['url'],
@@ -59,16 +68,19 @@ def index():
                     videos.append(video)
             else:
                 print("API error:", response.text)
+
         else:
-            #using key words to search
+            # --- Handle keyword-based search ---
             search_params = {
                 'part': 'snippet',
                 'q': query,
                 'key': YOUTUBE_API_KEY,
                 'maxResults': 10,
                 'type': 'video',
-                'videoLicense': 'creativeCommon'
+                'videoLicense': 'creativeCommon'  # Only return Creative Commons videos
             }
+
+            # Make search request
             response = requests.get(YOUTUBE_SEARCH_URL, params=search_params)
             if response.status_code == 200:
                 data = response.json()
@@ -84,12 +96,15 @@ def index():
             else:
                 print("API error:", response.text)
 
-    return render_template('index.html', videos = videos)
+    # Render template with list of videos (if any)
+    return render_template('index.html', videos=videos)
 
 @app.route('/download/<video_id>')
 def download(video_id):
+    # Build the video URL
     video_url = f"https://www.youtube.com/watch?v={video_id}"
 
+    # Command to download the best available video format using yt-dlp
     download_cmd = [
         'yt-dlp',
         '-f', 'best',
@@ -98,16 +113,20 @@ def download(video_id):
     ]
 
     try:
-        subprocess.run(download_cmd, check = True)
+        # Execute the download command
+        subprocess.run(download_cmd, check=True)
 
+        # Find the most recently downloaded file
         list_of_files = glob.glob(os.path.join(DOWNLOAD_FOLDER, '*'))
         if not list_of_files:
             return "No files found", 404
 
-        latest_file = max(list_of_files, key = os.path.getctime)
+        latest_file = max(list_of_files, key=os.path.getctime)
         print("Sending file: ", latest_file)
 
-        return send_file(latest_file, as_attachment = True)
+        # Send file to client for download
+        return send_file(latest_file, as_attachment=True)
+
     except subprocess.CalledProcessError:
         return "Download failed", 500
     except Exception as e:
@@ -115,5 +134,6 @@ def download(video_id):
         abort(500)
 
 if __name__ == '__main__':
+    # Automatically open the browser on launch
     webbrowser.open('http://127.0.0.1:80')
     app.run(port=80)
