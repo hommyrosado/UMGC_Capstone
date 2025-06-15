@@ -99,7 +99,7 @@ def index():
     # Render template with list of videos (if any)
     return render_template('index.html', videos=videos)
 
-@app.route('/download/<video_id>')
+@app.route('/downloads/<video_id>')
 def download(video_id):
     # Build the video URL
     video_url = f"https://www.youtube.com/watch?v={video_id}"
