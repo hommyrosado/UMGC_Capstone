@@ -12,25 +12,25 @@
   }
 
   .container {
-    max-width: 900px; /* from B: more space than A */
+    max-width: 900px;
     margin: auto;
     background: #fff;
-    padding: 30px; /* from B: more padding */
+    padding: 30px;
     border-radius: 10px;
   }
 
   input[type="text"] {
     width: 100%;
     padding: 10px;
-    margin: 10px 0; /* from A */
-    font-size: 1rem; /* from B */
-    margin-bottom: 1rem; /* from B */
+    margin: 10px 0;
+    font-size: 1rem;
+    margin-bottom: 1rem;
   }
 
   button {
     padding: 10px 20px;
-    font-size: 1rem; /* from B */
-    background: #0066cc; /* from B */
+    font-size: 1rem;
+    background: #0066cc;
     color: #fff;
     border: none;
     border-radius: 6px;
@@ -39,7 +39,7 @@
 
   /* Video listing styles */
   .video {
-    display: flex; /* from B */
+    display: flex;
     gap: 20px;
     margin-top: 20px;
     align-items: center;
@@ -47,12 +47,12 @@
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 6px;
-    border-bottom: 1px solid #ccc; /* merged from A */
-    padding-bottom: 20px; /* merged from A */
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
   }
 
   .video img {
-    width: 200px; /* from B, A used 300px */
+    width: 200px;
     border-radius: 5px;
     display: block;
   }
@@ -107,8 +107,29 @@
     height: 100%;
     background-color: #0066cc;
   }
-</style>
 
+  /* Responsive styles for mobile */
+  @media (max-width: 600px) {
+    .video {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .video img {
+      width: 100%;
+      height: auto;
+    }
+
+    .modal-content {
+      width: 90%;
+    }
+
+    button {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+</style>
 </head>
 <body>
 <div class="container">
