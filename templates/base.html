@@ -9,6 +9,20 @@
 </head>
 <body class="bg-light py-5">
   <div class="container bg-white p-4 rounded shadow">
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      {{ messages[0] }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  {% endif %}
+{% endwith %}
+    {% if session.get("username") %}
+      <div class="mb-3 text-end">
+        <span class="text-muted">Welcome, {{ session['username'] }}!</span>
+      </div>
+    {% endif %}
+
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-white border rounded shadow-sm mb-4">
       <div class="container-fluid">
@@ -21,31 +35,69 @@
             <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
-          <div class="offcanvas-body">
-            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-              <li class="nav-item">
-                <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">Home</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Playlists</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="/playlists">View All</a></li>
-                  <li><a class="dropdown-item" href="/create_playlist">Create New</a></li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link {% if '/history' in request.path %}active{% endif %}" href="/history">History</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="?modal=about" data-bs-toggle="modal" data-bs-target="#aboutModal" data-show="about">About</a>
-              </li>
-            </ul>
+          <div class="offcanvas-body d-flex justify-content-between align-items-center w-100">
+<ul class="navbar-nav flex-grow-1 pe-3">
+  <li class="nav-item">
+    <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">Home</a>
+  </li>
+
+  {% if session.get("username") %}
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Playlists</a>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="/playlists">View All</a></li>
+      <li><a class="dropdown-item" href="/create_playlist">Create New</a></li>
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {% if '/history' in request.path %}active{% endif %}" href="/history">History</a>
+  </li>
+  {% endif %}
+
+  <li class="nav-item">
+    <a class="nav-link" href="?modal=about" data-bs-toggle="modal" data-bs-target="#aboutModal" data-show="about">About</a>
+  </li>
+</ul>
+
+
+<div class="d-flex gap-2">
+  {% if session.get("username") %}
+    <a href="/logout" class="btn btn-outline-danger">Logout</a>
+  {% else %}
+    <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+  {% endif %}
+</div>
           </div>
         </div>
       </div>
     </nav>
 
     {% block content %}{% endblock %}
+  </div>
+
+  <!-- Login Modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <form class="modal-content bg-dark text-light" method="POST" action="/login">
+        <div class="modal-header border-0">
+          <h5 class="modal-title" id="loginModalLabel">Please sign in</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control bg-dark text-light border-secondary" id="email" name="email" required>
+          </div>
+          <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" id="remember">
+            <label class="form-check-label" for="remember">Remember me</label>
+          </div>
+        </div>
+        <div class="modal-footer border-0">
+          <button type="submit" class="btn btn-primary w-100">Sign in</button>
+        </div>
+      </form>
+    </div>
   </div>
 
   <!-- About Modal -->

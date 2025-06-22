@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, send_file, flash, jsonify
+from flask import Flask, render_template, request, redirect, url_for, send_file, flash, jsonify, session
 from yt_dlp import YoutubeDL
 from dotenv import load_dotenv
 import os, re, json, requests, logging
@@ -135,8 +135,25 @@ def index():
 
     return render_template("index.html", videos=videos)
 
+@app.route("/login", methods=["POST"])
+def login():
+    email = request.form.get("email", "").strip()
+    if email:
+        session["username"] = email
+    else:
+        session["username"] = "Guest"
+    return redirect(url_for("index"))
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for("index"))
+
 @app.route("/start_download", methods=["POST"])
 def start_download():
+    if "username" not in session:
+        return jsonify(success=False, error="Login required to download")
+
     data = request.get_json()
     video_id = data.get("video_id")
     video_url = f"https://www.youtube.com/watch?v={video_id}"
@@ -167,6 +184,9 @@ def download_file(filename):
 
 @app.route("/history")
 def history():
+    if "username" not in session:
+        flash("Please log in to view history.")
+        return redirect(url_for("index"))
     history_data = load_download_history()
     query = request.args.get("q", "").lower()
     if query:
@@ -206,6 +226,9 @@ def about():
 
 @app.route("/delete_video/<video_id>", methods=["POST"])
 def delete_video(video_id):
+    if "username" not in session:
+        flash("Please log in to view history.")
+        return redirect(url_for("index"))
     history = load_download_history()
     updated = [v for v in history if v["video_id"] != video_id]
     with open(HISTORY_FILE, "w") as f:
@@ -222,6 +245,9 @@ def check_playlists():
 
 @app.route("/create_playlist")
 def create_playlist():
+    if "username" not in session:
+        flash("Please log in to create a playlist.")
+        return redirect(url_for("index"))
     return render_template("create_playlist.html")
 
 @app.route("/save_playlist", methods=["POST"])
@@ -257,6 +283,9 @@ def save_playlist():
 
 @app.route("/assign_to_playlist", methods=["POST"])
 def assign_to_playlist():
+    if "username" not in session:
+        flash("Please log in to view history.")
+        return redirect(url_for("index"))
     video_id = request.form.get("video_id")
     playlist_name = request.form.get("playlist_name")
 
@@ -286,6 +315,9 @@ def assign_to_playlist():
 
 @app.route("/playlists")
 def playlists():
+    if "username" not in session:
+        flash("Please log in to access playlists.")
+        return redirect(url_for("index"))
     playlists = []
     try:
         if os.path.exists(PLAYLIST_FILE):

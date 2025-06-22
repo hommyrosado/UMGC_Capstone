@@ -18,7 +18,11 @@
       <img src="{{ video.thumbnail }}" width="200" class="rounded">
       <div class="flex-grow-1">
         <h5>{{ video.title }} {% if video.downloaded %}<span class="text-success">✔</span>{% endif %}</h5>
-        <button class="btn btn-success" onclick="openModal('{{ video.video_id }}', '{{ video.title | escape }}')">Download</button>
+{% if session.get("username") %}
+  <button class="btn btn-success" onclick="openModal('{{ video.video_id }}', '{{ video.title | escape }}')">Download</button>
+{% else %}
+  <span class="badge bg-secondary">Login to Download</span>
+{% endif %}
       </div>
     </div>
   </div>
