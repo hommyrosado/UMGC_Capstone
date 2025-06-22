@@ -47,5 +47,6 @@ NEXT FEATURES:
   - ✅ Read from history, return search like view of previously downloaded content and show with a PLAY button.
   - ✅ Dropdown to either create a new playlist, or play from a previously created playlist
   - When downloading a video, prompt use to select what playlist to assign the video.
+  - When videos are deleted from history, they should also be deleted from the playlist, and visa versa.
 
 
