@@ -26,6 +26,7 @@ This is a Flask-based web application that allows users to download videosfrom p
 TODO:
 Added the following [feature/errorLogging] branch:
 - 🚨 **URGENT** Implimented the yt-dlp Python API. Had to rewrite application foundation code. All efforts did not allow video downloading.
+- 🚨 **URGENT** Ensure that the .secrets folder is created with .env internal file with the API key.
 - ✅ History folder to document history of downloaded videos. This JSON file is read, and if the video in the search results has already been downloaded, then a check mark indicator (or any we deam appropriate) shows in the results. This will help for the creation of a Playlist
 - ✅ Sample progress bar or indicator of status. This progress bar shows up in a modal (popup) window that prompts the user to ensure that they "really" want to download the selected video.
 - ✅ Error Logging for application side and client side code.
