@@ -1,7 +1,8 @@
 # Ignore logs and env files
 logs/
 *.log
-.env
+.env*
+
 
 # Ignore Python cache
 __pycache__/
