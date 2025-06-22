@@ -40,7 +40,10 @@ Added the following [feature/errorLogging] branch:
   See the media_rules_instructions.md file.
   
 - Playlist - working
-- - Playlist saving feature for differentiation of downloads (save by user specified groupings) 
-  - create subfolders in designated download folder
+- - NOT SURE? Playlist saving feature for differentiation of downloads (save by user specified groupings) 
+  - NOT SURE? create subfolders in designated download folder
+
+- Data file: playlists.json / history: download_history.json / logs: applog
+-   All these need to be cleared upon NEW install. Even if this is a web-app, need to identify "New User" vs Returning user.
 
 
