@@ -42,5 +42,8 @@ Added the following [feature/errorLogging] branch:
 - Playlist - working
 - - Playlist saving feature for differentiation of downloads (save by user specified groupings) 
   - create subfolders in designated download folder
+  - Read from history, return search like view of previously downloaded content and show with a PLAY button.
+  - Dropdown to either create a new playlist, or play from a previously created playlist
+  - When downloading a video, prompt use to select what playlist to assign the video.
 
 
