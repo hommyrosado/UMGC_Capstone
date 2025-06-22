@@ -5,6 +5,7 @@ import re
 import subprocess
 import glob
 
+from error_logger import logger
 from dotenv import load_dotenv
 from flask import Flask, render_template, request, redirect, url_for, send_file, abort
 
@@ -13,6 +14,7 @@ from flask import Flask, render_template, request, redirect, url_for, send_file,
 
 # Initialize Flask app
 app = Flask(__name__)
+logger.info("App started")
 
 # Load environment variables from .env file
 load_dotenv()
@@ -31,11 +33,13 @@ def index():
     if request.method == 'POST':
         # Get search input and clean it up
         query = request.form['query'].strip()
+        logger.info(f"Received search query: {query}")
 
         # Check if the query is a YouTube video URL
         match = re.search(r"(?:v=|youtu\.be/)([\w-]{11})", query)
         if match:
             # --- Handle YouTube link input ---
+            logger.info(f"Detected YouTube video URL with ID: {video_id}")
             video_id = match.group(1)
             video_api_url = 'https://www.googleapis.com/youtube/v3/videos'
             params = {
@@ -55,7 +59,8 @@ def index():
 
                     # Ensure video is Creative Commons licensed
                     if license_type != 'creativeCommon':
-                        print("Video is not Creative Commons")
+                        logger.warning(f"Video {video_id} is not Creative Commons")
+                        # print("Video is not Creative Commons")
                         return render_template('index.html', videos=[])
 
                     # Append video details to be displayed on the frontend
@@ -67,7 +72,8 @@ def index():
                     }
                     videos.append(video)
             else:
-                print("API error:", response.text)
+                logger.error(f"YouTube Video API error: {response.text}")
+                # print("API error:", response.text)
 
         else:
             # --- Handle keyword-based search ---
@@ -94,7 +100,8 @@ def index():
                     }
                     videos.append(video)
             else:
-                print("API error:", response.text)
+                # print("API error:", response.text)
+                logger.error(f"YouTube Video API error: {response.text}")
 
     # Render template with list of videos (if any)
     return render_template('index.html', videos=videos)
@@ -113,6 +120,8 @@ def download(video_id):
     ]
 
     try:
+        logger.info(f"Starting download for video ID: {video_id}")
+
         # Execute the download command
         subprocess.run(download_cmd, check=True)
 
@@ -122,18 +131,31 @@ def download(video_id):
             return "No files found", 404
 
         latest_file = max(list_of_files, key=os.path.getctime)
-        print("Sending file: ", latest_file)
+        logger.info(f"Sending file to user: {latest_file}")
+        # print("Sending file: ", latest_file)
 
         # Send file to client for download
         return send_file(latest_file, as_attachment=True)
 
-    except subprocess.CalledProcessError:
+    except subprocess.CalledProcessError as e:
+        logger.error(f"yt-dlp failed: {e}")
         return "Download failed", 500
     except Exception as e:
-        print("Unexpected error:", e)
+        # print("Unexpected error:", e)
+        logger.exception(f"Unexpected error during file download: {e}")
         abort(500)
+
+@app.errorhandler(500)
+def internal_error(error):
+    logger.exception("500 Internal Server Error")
+    return render_template('500.html'), 500
+
+@app.errorhandler(404)
+def not_found_error(error):
+    logger.warning("404 Not Found")
+    return render_template('404.html'), 404
 
 if __name__ == '__main__':
     # Automatically open the browser on launch
-    webbrowser.open('http://127.0.0.1:80')
-    app.run(port=80)
+    webbrowser.open('http://127.0.0.1:5000')
+    app.run(port=5000)

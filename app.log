@@ -1,0 +1,502 @@
+2025-06-22 13:16:50 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-06-22 13:16:50 INFO [33mPress CTRL+C to quit[0m
+2025-06-22 13:17:02 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-06-22 13:17:02 INFO [33mPress CTRL+C to quit[0m
+2025-06-22 13:19:05 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-06-22 13:19:05 INFO [33mPress CTRL+C to quit[0m
+2025-06-22 13:20:46 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-06-22 13:20:46 INFO [33mPress CTRL+C to quit[0m
+2025-06-22 13:26:25 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-06-22 13:26:25 INFO [33mPress CTRL+C to quit[0m
+2025-06-22 13:26:25 INFO 127.0.0.1 - - [22/Jun/2025 13:26:25] "GET / HTTP/1.1" 200 -
+2025-06-22 13:27:11 ERROR Exception on / [POST]
+Traceback (most recent call last):
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/app.py", line 89, in index
+    video_id = item['id']['videoId']
+               ~~~~~~~~~~^^^^^^^^^^^
+KeyError: 'videoId'
+2025-06-22 13:27:11 INFO 127.0.0.1 - - [22/Jun/2025 13:27:11] "[35m[1mPOST / HTTP/1.1[0m" 500 -
+2025-06-22 13:42:55 INFO App started
+2025-06-22 13:42:55 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-06-22 13:42:55 INFO [33mPress CTRL+C to quit[0m
+2025-06-22 13:42:55 INFO 127.0.0.1 - - [22/Jun/2025 13:42:55] "GET / HTTP/1.1" 200 -
+2025-06-22 13:43:02 INFO Received search query: marvel rivals
+2025-06-22 13:43:03 ERROR Exception on / [POST]
+Traceback (most recent call last):
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/app.py", line 94, in index
+    video_id = item['id']['videoId']
+               ~~~~~~~~~~^^^^^^^^^^^
+KeyError: 'videoId'
+2025-06-22 13:43:03 ERROR 500 Internal Server Error
+Traceback (most recent call last):
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/app.py", line 94, in index
+    video_id = item['id']['videoId']
+               ~~~~~~~~~~^^^^^^^^^^^
+KeyError: 'videoId'
+2025-06-22 13:43:03 INFO 127.0.0.1 - - [22/Jun/2025 13:43:03] "[35m[1mPOST / HTTP/1.1[0m" 500 -
+2025-06-22 13:43:03 ERROR Error on request:
+Traceback (most recent call last):
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/app.py", line 94, in index
+    video_id = item['id']['videoId']
+               ~~~~~~~~~~^^^^^^^^^^^
+KeyError: 'videoId'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/werkzeug/serving.py", line 370, in run_wsgi
+    execute(self.server.app)
+    ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/werkzeug/serving.py", line 331, in execute
+    application_iter = app(environ, start_response)
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 1536, in __call__
+    return self.wsgi_app(environ, start_response)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 1514, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 860, in handle_exception
+    server_error = self.ensure_sync(handler)(server_error)
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/app.py", line 151, in internal_error
+    return render_template('500.html'), 500
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/templating.py", line 149, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/jinja2/environment.py", line 1087, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/jinja2/environment.py", line 1016, in get_template
+    return self._load_template(name, globals)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/jinja2/environment.py", line 975, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/jinja2/loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+                                 ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/templating.py", line 65, in get_source
+    return self._get_source_fast(environment, template)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/templating.py", line 99, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: 500.html
+2025-06-22 13:50:02 INFO App started
+2025-06-22 13:50:02 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-06-22 13:50:02 INFO [33mPress CTRL+C to quit[0m
+2025-06-22 13:50:02 INFO 127.0.0.1 - - [22/Jun/2025 13:50:02] "GET / HTTP/1.1" 200 -
+2025-06-22 13:50:10 INFO Received search query: marvel rivals
+2025-06-22 13:50:10 ERROR Exception on / [POST]
+Traceback (most recent call last):
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/app.py", line 94, in index
+    video_id = item['id']['videoId']
+               ~~~~~~~~~~^^^^^^^^^^^
+KeyError: 'videoId'
+2025-06-22 13:50:10 ERROR 500 Internal Server Error
+Traceback (most recent call last):
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/app.py", line 94, in index
+    video_id = item['id']['videoId']
+               ~~~~~~~~~~^^^^^^^^^^^
+KeyError: 'videoId'
+2025-06-22 13:50:10 INFO 127.0.0.1 - - [22/Jun/2025 13:50:10] "[35m[1mPOST / HTTP/1.1[0m" 500 -
+2025-06-22 13:50:10 ERROR Error on request:
+Traceback (most recent call last):
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/app.py", line 94, in index
+    video_id = item['id']['videoId']
+               ~~~~~~~~~~^^^^^^^^^^^
+KeyError: 'videoId'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/werkzeug/serving.py", line 370, in run_wsgi
+    execute(self.server.app)
+    ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/werkzeug/serving.py", line 331, in execute
+    application_iter = app(environ, start_response)
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 1536, in __call__
+    return self.wsgi_app(environ, start_response)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 1514, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 860, in handle_exception
+    server_error = self.ensure_sync(handler)(server_error)
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/app.py", line 151, in internal_error
+    return render_template('500.html'), 500
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/templating.py", line 149, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/jinja2/environment.py", line 1087, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/jinja2/environment.py", line 1016, in get_template
+    return self._load_template(name, globals)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/jinja2/environment.py", line 975, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/jinja2/loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+                                 ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/templating.py", line 65, in get_source
+    return self._get_source_fast(environment, template)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/templating.py", line 99, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: 500.html
+2025-06-22 13:51:02 INFO 127.0.0.1 - - [22/Jun/2025 13:51:02] "GET / HTTP/1.1" 200 -
+2025-06-22 13:51:05 INFO Received search query: data
+2025-06-22 13:51:05 INFO 127.0.0.1 - - [22/Jun/2025 13:51:05] "POST / HTTP/1.1" 200 -
+2025-06-22 13:51:10 INFO Starting download for video ID: -bSkREem8dM
+2025-06-22 13:51:15 ERROR Unexpected error during file download: cannot access local variable 'latest_file' where it is not associated with a value
+Traceback (most recent call last):
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/app.py", line 133, in download
+    logger.info(f"Sending file to user: {latest_file}")
+                                         ^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'latest_file' where it is not associated with a value
+2025-06-22 13:51:15 ERROR 500 Internal Server Error
+Traceback (most recent call last):
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/app.py", line 133, in download
+    logger.info(f"Sending file to user: {latest_file}")
+                                         ^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'latest_file' where it is not associated with a value
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/app.py", line 146, in download
+    abort(500)
+    ~~~~~^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/helpers.py", line 284, in abort
+    current_app.aborter(code, *args, **kwargs)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/werkzeug/exceptions.py", line 876, in __call__
+    raise self.mapping[code](*args, **kwargs)
+werkzeug.exceptions.InternalServerError: 500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
+2025-06-22 13:51:15 ERROR Exception on /downloads/-bSkREem8dM [GET]
+Traceback (most recent call last):
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/app.py", line 133, in download
+    logger.info(f"Sending file to user: {latest_file}")
+                                         ^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'latest_file' where it is not associated with a value
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/app.py", line 146, in download
+    abort(500)
+    ~~~~~^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/helpers.py", line 284, in abort
+    current_app.aborter(code, *args, **kwargs)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/werkzeug/exceptions.py", line 876, in __call__
+    raise self.mapping[code](*args, **kwargs)
+werkzeug.exceptions.InternalServerError: 500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 802, in handle_user_exception
+    return self.handle_http_exception(e)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 777, in handle_http_exception
+    return self.ensure_sync(handler)(e)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/app.py", line 151, in internal_error
+    return render_template('500.html'), 500
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/templating.py", line 149, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/jinja2/environment.py", line 1087, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/jinja2/environment.py", line 1016, in get_template
+    return self._load_template(name, globals)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/jinja2/environment.py", line 975, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/jinja2/loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+                                 ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/templating.py", line 65, in get_source
+    return self._get_source_fast(environment, template)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/templating.py", line 99, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: 500.html
+2025-06-22 13:51:15 ERROR 500 Internal Server Error
+Traceback (most recent call last):
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/app.py", line 133, in download
+    logger.info(f"Sending file to user: {latest_file}")
+                                         ^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'latest_file' where it is not associated with a value
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/app.py", line 146, in download
+    abort(500)
+    ~~~~~^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/helpers.py", line 284, in abort
+    current_app.aborter(code, *args, **kwargs)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/werkzeug/exceptions.py", line 876, in __call__
+    raise self.mapping[code](*args, **kwargs)
+werkzeug.exceptions.InternalServerError: 500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 802, in handle_user_exception
+    return self.handle_http_exception(e)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 777, in handle_http_exception
+    return self.ensure_sync(handler)(e)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/app.py", line 151, in internal_error
+    return render_template('500.html'), 500
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/templating.py", line 149, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/jinja2/environment.py", line 1087, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/jinja2/environment.py", line 1016, in get_template
+    return self._load_template(name, globals)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/jinja2/environment.py", line 975, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/jinja2/loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+                                 ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/templating.py", line 65, in get_source
+    return self._get_source_fast(environment, template)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/templating.py", line 99, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: 500.html
+2025-06-22 13:51:15 INFO 127.0.0.1 - - [22/Jun/2025 13:51:15] "[35m[1mGET /downloads/-bSkREem8dM HTTP/1.1[0m" 500 -
+2025-06-22 13:51:15 ERROR Error on request:
+Traceback (most recent call last):
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/app.py", line 133, in download
+    logger.info(f"Sending file to user: {latest_file}")
+                                         ^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'latest_file' where it is not associated with a value
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/app.py", line 146, in download
+    abort(500)
+    ~~~~~^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/helpers.py", line 284, in abort
+    current_app.aborter(code, *args, **kwargs)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/werkzeug/exceptions.py", line 876, in __call__
+    raise self.mapping[code](*args, **kwargs)
+werkzeug.exceptions.InternalServerError: 500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 802, in handle_user_exception
+    return self.handle_http_exception(e)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 777, in handle_http_exception
+    return self.ensure_sync(handler)(e)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/app.py", line 151, in internal_error
+    return render_template('500.html'), 500
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/templating.py", line 149, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/jinja2/environment.py", line 1087, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/jinja2/environment.py", line 1016, in get_template
+    return self._load_template(name, globals)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/jinja2/environment.py", line 975, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/jinja2/loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+                                 ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/templating.py", line 65, in get_source
+    return self._get_source_fast(environment, template)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/templating.py", line 99, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: 500.html
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/werkzeug/serving.py", line 370, in run_wsgi
+    execute(self.server.app)
+    ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/werkzeug/serving.py", line 331, in execute
+    application_iter = app(environ, start_response)
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 1536, in __call__
+    return self.wsgi_app(environ, start_response)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 1514, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/app.py", line 860, in handle_exception
+    server_error = self.ensure_sync(handler)(server_error)
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/app.py", line 151, in internal_error
+    return render_template('500.html'), 500
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/templating.py", line 149, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/jinja2/environment.py", line 1087, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/jinja2/environment.py", line 1016, in get_template
+    return self._load_template(name, globals)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/jinja2/environment.py", line 975, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/jinja2/loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+                                 ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/templating.py", line 65, in get_source
+    return self._get_source_fast(environment, template)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/joshua/UMGC/CMSC495/UMGC_Capstone/.venv/lib/python3.13/site-packages/flask/templating.py", line 99, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: 500.html
+2025-06-22 13:52:43 INFO App started
+2025-06-22 13:52:44 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-06-22 13:52:44 INFO [33mPress CTRL+C to quit[0m
+2025-06-22 13:52:44 INFO 127.0.0.1 - - [22/Jun/2025 13:52:44] "GET / HTTP/1.1" 200 -
+2025-06-22 13:52:49 INFO Received search query: data
+2025-06-22 13:52:50 INFO 127.0.0.1 - - [22/Jun/2025 13:52:50] "POST / HTTP/1.1" 200 -
+2025-06-22 13:52:52 INFO Starting download for video ID: -bSkREem8dM
+2025-06-22 13:52:56 INFO Sending file to user: downloads/Database vs Data Warehouse vs Data Lake ｜ What is the Difference？.mp4
+2025-06-22 13:52:56 INFO 127.0.0.1 - - [22/Jun/2025 13:52:56] "GET /downloads/-bSkREem8dM HTTP/1.1" 200 -
+2025-06-22 13:53:34 INFO Starting download for video ID: ywZXpfdqg1o
+2025-06-22 13:53:39 INFO Sending file to user: downloads/What Does a Data Analyst Actually Do？.mp4
+2025-06-22 13:53:39 INFO 127.0.0.1 - - [22/Jun/2025 13:53:39] "GET /downloads/ywZXpfdqg1o HTTP/1.1" 200 -
+2025-06-22 13:54:26 INFO Starting download for video ID: ywZXpfdqg1o
+2025-06-22 13:54:29 INFO Sending file to user: downloads/What Does a Data Analyst Actually Do？.mp4
+2025-06-22 13:54:29 INFO 127.0.0.1 - - [22/Jun/2025 13:54:29] "GET /downloads/ywZXpfdqg1o HTTP/1.1" 200 -
+2025-06-22 13:55:18 INFO Starting download for video ID: -bSkREem8dM
+2025-06-22 13:55:22 INFO Sending file to user: downloads/What Does a Data Analyst Actually Do？.mp4
+2025-06-22 13:55:22 INFO 127.0.0.1 - - [22/Jun/2025 13:55:22] "GET /downloads/-bSkREem8dM HTTP/1.1" 200 -
+2025-06-22 13:55:24 INFO Starting download for video ID: ywZXpfdqg1o
+2025-06-22 13:55:28 INFO Sending file to user: downloads/What Does a Data Analyst Actually Do？.mp4
+2025-06-22 13:55:28 INFO 127.0.0.1 - - [22/Jun/2025 13:55:28] "GET /downloads/ywZXpfdqg1o HTTP/1.1" 200 -
+2025-06-22 13:57:07 INFO App started
+2025-06-22 13:57:07 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-06-22 13:57:07 INFO [33mPress CTRL+C to quit[0m
+2025-06-22 13:57:15 INFO 127.0.0.1 - - [22/Jun/2025 13:57:15] "GET / HTTP/1.1" 200 -
+2025-06-22 13:57:24 INFO App started
+2025-06-22 13:57:25 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-06-22 13:57:25 INFO [33mPress CTRL+C to quit[0m
+2025-06-22 13:57:25 INFO 127.0.0.1 - - [22/Jun/2025 13:57:25] "GET / HTTP/1.1" 200 -
+2025-06-22 13:57:43 INFO Received search query: data
+2025-06-22 13:57:43 INFO 127.0.0.1 - - [22/Jun/2025 13:57:43] "POST / HTTP/1.1" 200 -
+2025-06-22 13:57:49 INFO Starting download for video ID: -bSkREem8dM
+2025-06-22 13:57:54 INFO Sending file to user: playlist downloads/Database vs Data Warehouse vs Data Lake ｜ What is the Difference？.mp4
+2025-06-22 13:57:54 INFO 127.0.0.1 - - [22/Jun/2025 13:57:54] "GET /downloads/-bSkREem8dM HTTP/1.1" 200 -
