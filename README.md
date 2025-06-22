@@ -41,7 +41,8 @@ Added the following [feature/errorLogging] branch:
 
 NEXT FEATURES:
 - ✅ Playlist - working
-- - Playlist saving feature for differentiation of downloads (save by user specified groupings) 
+- - Playlist saving feature for differentiation of downloads (save by user specified groupings)
+  - ✅ Fixed download as to only download in internal downloads project folder
   - create subfolders in designated download folder
   - ✅ Read from history, return search like view of previously downloaded content and show with a PLAY button.
   - ✅ Dropdown to either create a new playlist, or play from a previously created playlist
