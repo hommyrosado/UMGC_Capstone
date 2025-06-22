@@ -38,7 +38,8 @@ Added the following [feature/errorLogging] branch:
 - ✅ Discalmer review - shows first time (feature/videoDownloadProgressBar)
 - ✅ Chrome @media rules test environment for multiple form factors. Dreamweaver also an option. Intellij or Visual Code may have extension.
   See the media_rules_instructions.md file.
-  
+
+NEXT FEATURES:
 - Playlist - working
 - - Playlist saving feature for differentiation of downloads (save by user specified groupings) 
   - create subfolders in designated download folder
