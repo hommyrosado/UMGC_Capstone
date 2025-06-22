@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Create Playlist{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Create New Playlist</h2>
+
+<form method="POST" action="/save_playlist">
+  <div class="mb-3">
+    <label for="playlistName" class="form-label">Playlist Name</label>
+    <input type="text" class="form-control" id="playlistName" name="playlist_name" placeholder="Enter playlist name" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Create Playlist</button>
+  <a href="/playlists" class="btn btn-secondary ms-2">Cancel</a>
+</form>
+{% endblock %}

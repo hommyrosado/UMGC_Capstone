@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block title %}Download History{% endblock %}
+
+{% block head %}
+  <style>
+    .video-history-card {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #f8f9fa;
+    }
+    .video-history-card img {
+      width: 160px;
+      border-radius: 8px;
+    }
+    .downloaded-on {
+      font-size: 0.9rem;
+      color: #6c757d;
+    }
+    #progressBarFill {
+      width: 0%;
+      height: 100%;
+      background-color: #0d6efd;
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Download History</h2>
+
+<form method="GET" action="/history" class="mb-3">
+  <div class="input-group">
+    <input type="text" name="q" value="{{ request.args.get('q', '') }}" class="form-control" placeholder="Filter by title...">
+    <button class="btn btn-outline-secondary" type="submit">Search</button>
+  </div>
+</form>
+
+{% if history %}
+<div class="d-flex flex-column gap-3">
+  {% for item in history %}
+  <div class="video-history-card">
+    <img src="{{ item.thumbnail }}" alt="Thumbnail">
+    <div class="flex-grow-1">
+      <h5>{{ item.title }}</h5>
+      <p class="downloaded-on">Downloaded on {{ item.timestamp }}</p>
+
+      <button class="btn btn-success btn-sm" onclick="openModal('{{ item.video_id }}', '{{ item.title | escape }}')">Download</button>
+
+      <form method="POST" action="/delete_video/{{ item.video_id }}" style="display:inline">
+        <button class="btn btn-danger btn-sm ms-2">Delete</button>
+      </form>
+
+      {% set assigned_playlists = video_to_playlists.get(item.video_id, []) %}
+      {% if all_playlists|length > assigned_playlists|length %}
+      <form method="POST" action="/assign_to_playlist" class="mt-2">
+        <input type="hidden" name="video_id" value="{{ item.video_id }}">
+        <select name="playlist_name" class="form-select form-select-sm d-inline-block w-auto">
+          {% for p in all_playlists %}
+            {% if p.name not in assigned_playlists %}
+              <option value="{{ p.name }}">{{ p.name }}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+        <button type="submit" class="btn btn-sm btn-outline-primary">Add to Playlist</button>
+      </form>
+      {% else %}
+      <small class="text-muted">Already added to all playlists</small>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- Pagination -->
+<nav class="mt-4">
+  <ul class="pagination justify-content-center">
+    {% if page > 1 %}
+      <li class="page-item"><a class="page-link" href="?q={{ request.args.get('q', '') }}&page={{ page - 1 }}">Previous</a></li>
+    {% endif %}
+    {% for p in range(1, total_pages + 1) %}
+      <li class="page-item {% if p == page %}active{% endif %}"><a class="page-link" href="?q={{ request.args.get('q', '') }}&page={{ p }}">{{ p }}</a></li>
+    {% endfor %}
+    {% if page < total_pages %}
+      <li class="page-item"><a class="page-link" href="?q={{ request.args.get('q', '') }}&page={{ page + 1 }}">Next</a></li>
+    {% endif %}
+  </ul>
+</nav>
+{% else %}
+<p>No videos have been downloaded yet.</p>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+  let selectedVideoId = null;
+  let progressInterval = null;
+  const downloadModal = new bootstrap.Modal(document.getElementById('downloadModal'));
+
+  function openModal(videoId, title) {
+    selectedVideoId = videoId;
+    document.getElementById("videoTitle").innerText = title;
+    document.getElementById("progressBarFill").style.width = "0%";
+    downloadModal.show();
+  }
+
+  function startDownload() {
+    let fill = document.getElementById("progressBarFill");
+    let percent = 0;
+
+    progressInterval = setInterval(() => {
+      if (percent < 90) {
+        percent += 5;
+        fill.style.width = percent + "%";
+      }
+    }, 300);
+
+    fetch("/start_download", {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ video_id: selectedVideoId })
+    })
+    .then(response => response.json())
+    .then(data => {
+      clearInterval(progressInterval);
+      if (data.success) {
+        fill.style.width = "100%";
+        setTimeout(() => {
+          window.location.href = `/download_file/${data.filename}`;
+          downloadModal.hide();
+        }, 500);
+      } else {
+        alert("Download failed: " + data.error);
+        downloadModal.hide();
+      }
+    })
+    .catch(err => {
+      alert("Error: " + err);
+      downloadModal.hide();
+    });
+  }
+</script>
+{% endblock %}

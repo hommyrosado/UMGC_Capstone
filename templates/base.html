@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}YouTube Downloader{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  {% block head %}{% endblock %}
+</head>
+<body class="bg-light py-5">
+  <div class="container bg-white p-4 rounded shadow">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-white border rounded shadow-sm mb-4">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">YouTube Downloader</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Playlists
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/playlists">View All</a></li>
+                  <li><a class="dropdown-item" href="/create_playlist">Create New</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {% if '/history' in request.path %}active{% endif %}" href="/history">History</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link"
+                   href="?modal=about"
+                   data-bs-toggle="modal"
+                   data-bs-target="#aboutModal"
+                   data-show="about">About</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    {% block content %}{% endblock %}
+  </div>
+
+  <!-- About Modal -->
+  <div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content p-4">
+        <div class="modal-header">
+          <h5 class="modal-title" id="aboutModalLabel">About This App</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>
+            The <strong>Automatic YouTube Downloader</strong> is intended for <strong>students and/or teachers</strong>
+            who want easier access to download academic videos from specific channels or playlists.
+            Students will be able to access a teacher's academic videos and use the download button through the GUI.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  {% block scripts %}
+  <script>
+    // Show modal from URL parameter (persistent modal)
+    window.addEventListener("DOMContentLoaded", () => {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("modal") === "about") {
+        const modal = document.getElementById("aboutModal");
+        if (modal) new bootstrap.Modal(modal).show();
+      }
+
+      document.querySelectorAll("[data-show='about']").forEach(el => {
+        el.addEventListener("click", e => {
+          e.preventDefault();
+          history.pushState({}, "", "?modal=about");
+          const modal = document.getElementById("aboutModal");
+          if (modal) new bootstrap.Modal(modal).show();
+        });
+      });
+    });
+
+    // Unsaved form protection
+    let formChanged = false;
+    document.querySelectorAll("form").forEach(form => {
+      form.addEventListener("change", () => formChanged = true);
+    });
+
+    window.addEventListener("beforeunload", (e) => {
+      if (formChanged) {
+        e.preventDefault();
+        e.returnValue = "";
+      }
+    });
+
+    // Global client-side JS error logging
+    window.onerror = function (message, source, lineno, colno, error) {
+      fetch("/log_js_error", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: message,
+          source: source,
+          line: lineno,
+          column: colno,
+          stack: error?.stack || null
+        })
+      });
+    };
+  </script>
+  {% endblock %}
+</body>
+</html>
