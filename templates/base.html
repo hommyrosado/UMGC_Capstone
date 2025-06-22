@@ -27,9 +27,7 @@
                 <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">Home</a>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Playlists
-                </a>
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Playlists</a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="/playlists">View All</a></li>
                   <li><a class="dropdown-item" href="/create_playlist">Create New</a></li>
@@ -39,11 +37,7 @@
                 <a class="nav-link {% if '/history' in request.path %}active{% endif %}" href="/history">History</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link"
-                   href="?modal=about"
-                   data-bs-toggle="modal"
-                   data-bs-target="#aboutModal"
-                   data-show="about">About</a>
+                <a class="nav-link" href="?modal=about" data-bs-toggle="modal" data-bs-target="#aboutModal" data-show="about">About</a>
               </li>
             </ul>
           </div>
@@ -63,11 +57,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p>
-            The <strong>Automatic YouTube Downloader</strong> is intended for <strong>students and/or teachers</strong>
-            who want easier access to download academic videos from specific channels or playlists.
-            Students will be able to access a teacher's academic videos and use the download button through the GUI.
-          </p>
+          <p>The <strong>Automatic YouTube Downloader</strong> is intended for <strong>students and/or teachers</strong> who want easier access to academic videos from specific channels or playlists.</p>
         </div>
         <div class="modal-footer">
           <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -76,7 +66,7 @@
     </div>
   </div>
 
-  <!-- Download Modal (global) -->
+  <!-- Download Modal -->
   <div class="modal fade" id="downloadModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content text-center p-4">
@@ -97,56 +87,26 @@
 
   {% block scripts %}
   <script>
-    // Show modal from URL parameter (persistent modal)
+    // Persistent About modal
     window.addEventListener("DOMContentLoaded", () => {
       const params = new URLSearchParams(window.location.search);
       if (params.get("modal") === "about") {
-        const modal = document.getElementById("aboutModal");
-        if (modal) new bootstrap.Modal(modal).show();
+        new bootstrap.Modal(document.getElementById("aboutModal")).show();
       }
 
       document.querySelectorAll("[data-show='about']").forEach(el => {
         el.addEventListener("click", e => {
           e.preventDefault();
           history.pushState({}, "", "?modal=about");
-          const modal = document.getElementById("aboutModal");
-          if (modal) new bootstrap.Modal(modal).show();
+          new bootstrap.Modal(document.getElementById("aboutModal")).show();
         });
       });
     });
 
-    // Unsaved form protection
-    let formChanged = false;
-    document.querySelectorAll("form").forEach(form => {
-      form.addEventListener("change", () => formChanged = true);
-    });
-
-    window.addEventListener("beforeunload", (e) => {
-      if (formChanged) {
-        e.preventDefault();
-        e.returnValue = "";
-      }
-    });
-
-    // Global client-side JS error logging
-    window.onerror = function (message, source, lineno, colno, error) {
-      fetch("/log_js_error", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          message: message,
-          source: source,
-          line: lineno,
-          column: colno,
-          stack: error?.stack || null
-        })
-      });
-    };
-
-    // Download logic (used across pages)
+    // Download logic
     let selectedVideoId = null;
     let progressInterval = null;
-    const downloadModal = new bootstrap.Modal(document.getElementById('downloadModal'));
+    const downloadModal = new bootstrap.Modal(document.getElementById("downloadModal"));
 
     function openModal(videoId, title) {
       selectedVideoId = videoId;
@@ -177,8 +137,9 @@
         if (data.success) {
           fill.style.width = "100%";
           setTimeout(() => {
-            window.location.href = `/download_file/${data.filename}`;
+            alert(`Video downloaded to server as ${data.filename}.`);
             downloadModal.hide();
+            location.reload();
           }, 500);
         } else {
           alert("Download failed: " + data.error);
