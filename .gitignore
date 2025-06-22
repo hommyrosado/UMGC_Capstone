@@ -9,6 +9,6 @@ __pycache__/
 *.pyc
 
 # Ignore downloads and IDE folders
-downloads/
+downloads/*
 .vscode/
-.idea/
+.idea/*
