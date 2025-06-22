@@ -18,25 +18,33 @@ This is a Flask-based web application that allows users to download videosfrom p
 
 - Python 3.x
 - Flask
-- yt-dlp 
+- yt-dlp [changed to yt_dlp]
 - ffmpeg
 - HTML/CSS
 - JSON 
 
 TODO:
-- Sample progress bar or indicator of status
-  Implimented the yt-dlp Python API
-- Error Logging / risk mitications / Server and Clientside
-  - Backend Logging: Already implemented!
+Added the following [feature/errorLogging] branch:
+- 🚨 **URGENT** Implimented the yt-dlp Python API. Had to rewrite application foundation code. All efforts did not allow video downloading.
+- ✅ History folder to document history of downloaded videos. This JSON file is read, and if the video in the search results has already been downloaded, then a check mark indicator (or any we deam appropriate) shows in the results. This will help for the creation of a Playlist
+- ✅ Sample progress bar or indicator of status. This progress bar shows up in a modal (popup) window that prompts the user to ensure that they "really" want to download the selected video.
+- ✅ Error Logging for application side and client side code.
+- TODO: Use this error logging for TESTING UAT and API vulnerability risk mitications / Server and Clientside
+  - ✅ Backend Logging: Already implemented!
     Errors are logged to logs/backend.log 
     via Python’s logging and TimedRotatingFileHandlerapp.
-  - Client Logging: Already implemented!
+- ✅ Client Logging: Already implemented!
     JavaScript window.onerror sends errors to /log_client_error, which logs to logs/client.log
 - ✅ Discalmer review - shows first time (feature/videoDownloadProgressBar)
-- Fix audio download
-- -gmail or google account OAuth
-- Playlist saving feature for differentiation of downloads (save by user specified groupings) 
-  - create subfolders in designated download folder
 - ✅ Chrome @media rules test environment for multiple form factors. Dreamweaver also an option. Intellij or Visual Code may have extension.
   See the media_rules_instructions.md file.
+
+NEXT FEATURES:
+- Playlist - working
+- - Playlist saving feature for differentiation of downloads (save by user specified groupings) 
+  - create subfolders in designated download folder
+  - Read from history, return search like view of previously downloaded content and show with a PLAY button.
+  - Dropdown to either create a new playlist, or play from a previously created playlist
+  - When downloading a video, prompt use to select what playlist to assign the video.
+
 
