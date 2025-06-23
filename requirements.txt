@@ -1,0 +1,4 @@
+Flask
+yt-dlp
+python-dotenv
+requests
