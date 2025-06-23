@@ -1,0 +1,90 @@
+2025-06-15 15:45:47,504 - INFO - Logger initialized correctly.
+2025-06-15 15:45:48,858 - INFO - Logger initialized correctly.
+2025-06-15 15:49:37,539 - INFO - Logger initialized correctly.
+2025-06-15 15:49:38,454 - INFO - Logger initialized correctly.
+2025-06-15 15:55:35,178 - INFO - Logger initialized correctly.
+2025-06-15 15:55:36,081 - INFO - Logger initialized correctly.
+2025-06-15 16:00:36,268 - INFO - Logger initialized correctly.
+2025-06-15 16:00:37,645 - INFO - Logger initialized correctly.
+2025-06-15 16:10:12,123 - INFO - Logger initialized.
+2025-06-15 16:10:12,782 - INFO - Logger initialized.
+2025-06-21 23:24:46,062 - WARNING - Skipped item without videoId: {'kind': 'youtube#searchResult', 'etag': 'Qo7cb1C0_r_4owpyGj803ETTahw', 'id': {'kind': 'youtube#channel', 'channelId': 'UCyyuD9yHJkS_3zL47LHur7A'}, 'snippet': {'publishedAt': '2016-12-14T03:57:21Z', 'channelId': 'UCyyuD9yHJkS_3zL47LHur7A', 'title': 'Jet Li Official YouTube Channel', 'description': 'Official YouTube Channel for Jet Li, martial artist and actor. Please follow me on these platforms ...', 'thumbnails': {'default': {'url': 'https://yt3.ggpht.com/jAOqGy4YObmmmMFK8xl4RBa4dQ310G8UiyK_cpjf89OHoX4z5YMLOIbVOOOFqf9yhLKdbsRy=s88-c-k-c0xffffffff-no-rj-mo'}, 'medium': {'url': 'https://yt3.ggpht.com/jAOqGy4YObmmmMFK8xl4RBa4dQ310G8UiyK_cpjf89OHoX4z5YMLOIbVOOOFqf9yhLKdbsRy=s240-c-k-c0xffffffff-no-rj-mo'}, 'high': {'url': 'https://yt3.ggpht.com/jAOqGy4YObmmmMFK8xl4RBa4dQ310G8UiyK_cpjf89OHoX4z5YMLOIbVOOOFqf9yhLKdbsRy=s800-c-k-c0xffffffff-no-rj-mo'}}, 'channelTitle': 'Jet Li Official YouTube Channel', 'liveBroadcastContent': 'none', 'publishTime': '2016-12-14T03:57:21Z'}}
+2025-06-22 00:01:41,921 - WARNING - playlists.json is empty.
+2025-06-22 00:01:46,126 - WARNING - playlists.json is empty.
+2025-06-22 00:04:12,525 - WARNING - playlists.json is empty.
+2025-06-22 00:11:12,029 - WARNING - playlists.json is empty.
+2025-06-22 00:11:20,720 - ERROR - Unhandled Exception
+Traceback (most recent call last):
+  File "C:\Users\hommy\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hommy\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Repos\UMGC_Capstone\app.py", line 222, in save_playlist
+    existing = json.load(f)
+               ^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\json\__init__.py", line 293, in load
+    return loads(fp.read(),
+           ^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\json\decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\json\decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2025-06-22 00:17:18,760 - INFO - New playlist created: Alpha_Playlist
+2025-06-22 00:25:50,981 - INFO - New playlist created: Beta_Playlist
+2025-06-22 09:07:31,407 - ERROR - Unhandled Exception
+Traceback (most recent call last):
+  File "C:\Users\hommy\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hommy\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask\app.py", line 854, in dispatch_request
+    self.raise_routing_exception(req)
+  File "C:\Users\hommy\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask\app.py", line 463, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hommy\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask\ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hommy\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\werkzeug\routing\map.py", line 629, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-06-22 09:08:03,696 - ERROR - Unhandled Exception
+Traceback (most recent call last):
+  File "C:\Users\hommy\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hommy\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask\app.py", line 854, in dispatch_request
+    self.raise_routing_exception(req)
+  File "C:\Users\hommy\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask\app.py", line 463, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hommy\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask\ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hommy\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\werkzeug\routing\map.py", line 629, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-06-22 09:08:50,644 - ERROR - Unhandled Exception
+Traceback (most recent call last):
+  File "C:\Users\hommy\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hommy\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask\app.py", line 854, in dispatch_request
+    self.raise_routing_exception(req)
+  File "C:\Users\hommy\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask\app.py", line 463, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hommy\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask\ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hommy\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\werkzeug\routing\map.py", line 629, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-06-22 09:41:46,195 - WARNING - Skipped item without videoId: {'kind': 'youtube#searchResult', 'etag': 'Qo7cb1C0_r_4owpyGj803ETTahw', 'id': {'kind': 'youtube#channel', 'channelId': 'UCyyuD9yHJkS_3zL47LHur7A'}, 'snippet': {'publishedAt': '2016-12-14T03:57:21Z', 'channelId': 'UCyyuD9yHJkS_3zL47LHur7A', 'title': 'Jet Li Official YouTube Channel', 'description': 'Official YouTube Channel for Jet Li, martial artist and actor. Please follow me on these platforms ...', 'thumbnails': {'default': {'url': 'https://yt3.ggpht.com/jAOqGy4YObmmmMFK8xl4RBa4dQ310G8UiyK_cpjf89OHoX4z5YMLOIbVOOOFqf9yhLKdbsRy=s88-c-k-c0xffffffff-no-rj-mo'}, 'medium': {'url': 'https://yt3.ggpht.com/jAOqGy4YObmmmMFK8xl4RBa4dQ310G8UiyK_cpjf89OHoX4z5YMLOIbVOOOFqf9yhLKdbsRy=s240-c-k-c0xffffffff-no-rj-mo'}, 'high': {'url': 'https://yt3.ggpht.com/jAOqGy4YObmmmMFK8xl4RBa4dQ310G8UiyK_cpjf89OHoX4z5YMLOIbVOOOFqf9yhLKdbsRy=s800-c-k-c0xffffffff-no-rj-mo'}}, 'channelTitle': 'Jet Li Official YouTube Channel', 'liveBroadcastContent': 'none', 'publishTime': '2016-12-14T03:57:21Z'}}
+2025-06-22 11:42:09,007 - INFO - New playlist created: Charlie_Playlist

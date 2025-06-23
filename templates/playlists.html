@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Playlists{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2 class="mb-0">Saved Playlists</h2>
+  <a href="/history" class="btn btn-outline-primary btn-sm">Add Videos from History</a>
+</div>
+
+{% if playlists %}
+  <div class="list-group">
+    {% for playlist in playlists %}
+    <div class="list-group-item">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <h5 class="mb-1">{{ playlist.name }}</h5>
+          {% if playlist.videos %}
+            <small>{{ playlist.videos | length }} video(s)</small>
+          {% else %}
+            <small>No videos yet</small>
+          {% endif %}
+        </div>
+        <button class="btn btn-outline-secondary btn-sm" onclick="toggleDetails('{{ loop.index0 }}')">View</button>
+      </div>
+      <div id="details-{{ loop.index0 }}" class="mt-3" style="display: none;">
+        <ul class="list-group list-group-flush">
+          {% for video in playlist.videos %}
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <a href="{{ video.video_url }}" target="_blank">{{ video.title }}</a>
+            <span class="text-muted small">{{ video.timestamp }}</span>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <p>No playlists found.</p>
+  <a href="/create_playlist" class="btn btn-primary">Create your first playlist</a>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+  function toggleDetails(index) {
+    const details = document.getElementById('details-' + index);
+    details.style.display = (details.style.display === 'none' || !details.style.display) ? 'block' : 'none';
+  }
+</script>
+{% endblock %}

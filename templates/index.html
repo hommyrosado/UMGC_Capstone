@@ -1,242 +1,34 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Automatic YouTube Downloader</title>
-    <!-- Inline CSS for basic styling -->
-    <style>
-        /* Basic layout and design for inputs and video display */
-        body { font-family: Arial; background: #f0f0f0; padding: 30px; }
-        .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 10px; }
-        input[type="text"] { width: 100%; padding: 10px; margin: 10px 0; }
-        button { padding: 10px 20px; }
-        .video { margin-top: 20px; border-bottom: 1px solid #ccc; padding-bottom: 20px; }
-        .video img { width: 300px; display: block; }
-        .video a { text-decoration: none; color: black; font-weight: bold; }
-    </style>
-</head>
+{% extends "base.html" %}
 
-<!-- Start of HTML document -->
-<body>
+{% block title %}Home - YouTube Downloader{% endblock %}
 
-<!-- Begin structured layout with styles and responsive design -->
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Automatic YouTube Downloader – Creative Commons</title>
-    <style>
-        /* CSS variables and resets */
-        :root {
-            --primary: #0066cc;
-            --primary-dark: #004a99;
-        }
-        * { box-sizing: border-box; }
+{% block content %}
+<form method="POST" class="mb-4">
+  <div class="input-group">
+    <input type="text" name="query" class="form-control" placeholder="Search topic or paste YouTube URL..." required>
+    <button class="btn btn-primary" type="submit">Search</button>
+  </div>
+</form>
 
-        /* General body and container styling */
-        body {
-            margin: 0;
-            padding: 40px 20px;
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f4f7fa;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 35px 45px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Headings and informational text */
-        h1 { margin: 0 0 .75rem; font-size: 1.9rem; color: #222; }
-        .subheading, .note, .tip { color: #555; line-height: 1.45; }
-        .subheading { margin-bottom: .8rem; }
-        .note { margin: 0 0 1rem; }
-        .tip { margin: 0 0 1.5rem; }
-
-        /* Form layout */
-        form {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 2rem;
-        }
-        input[type="text"] {
-            flex: 1;
-            padding: 12px 14px;
-            font-size: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-        }
-        button {
-            padding: 12px 22px;
-            font-size: 1rem;
-            background: var(--primary);
-            color: #fff;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background .2s;
-        }
-        button:hover { background: var(--primary-dark); }
-
-        /* Video listing styles */
-        .videos { display: flex; flex-direction: column; gap: 25px; }
-        .video {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-            background: #fafafa;
-            padding: 15px 20px;
-            border: 1px solid #e5e5e5;
-            border-radius: 10px;
-        }
-        .video img {
-            width: 200px;
-            border-radius: 6px;
-            flex-shrink: 0;
-        }
-        .video-title {
-            font-size: 1.05rem;
-            font-weight: 600;
-            color: #000;
-            text-decoration: none;
-        }
-        .video-title:hover { text-decoration: underline; }
-        .video-content { flex: 1; }
-    </style>
-</head>
-
-<body>
-    <div class="container">
-        <!-- Header and instructions -->
-        <h1>Automatic YouTube Downloader</h1>
-        <p class="subheading">Welcome! Enter the subject you wish to search videos for below.</p>
-        <p class="note"><strong>Note:</strong> Only Creative Commons licensed videos can be downloaded.</p>
-        <p class="tip"><em>Tip:</em> Click a video’s thumbnail to preview it before downloading.</p>
-
-        <!-- Search form -->
-        <form method="POST" action="/">
-            <input type="text" name="query" placeholder="e.g. Data Structures" required>
-            <button type="submit">Search</button>
-        </form>
-
-        <!-- Video results loop -->
-        <div class="videos">
-            {% for video in videos %}
-            <div class="video">
-                <!-- Clickable video thumbnail -->
-                <a href="{{ video.video_url }}" target="_blank">
-                    <img src="{{ video.thumbnail }}" alt="{{ video.title }}">
-                </a>
-                <!-- Video title and download button -->
-                <div class="video-content">
-                    <a href="{{ video.video_url }}" target="_blank" class="video-title">{{ video.title }}</a><br>
-                    <a href="{{ url_for('download', video_id=video.video_id) }}"><button>Download</button></a>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-
-        <!-- Footer section with credits -->
-        <footer class="footer">
-            <br>
-            <strong>Developed by:</strong><br>
-            Lane, Nicolas <br>
-            Hardwick, Sierra <br>
-            Leal, Joshua <br>
-            Moriggia, Anthony <br>
-            Rosado, Hommy <br><br>
-            UMGC CMSC&nbsp;495 &nbsp;|&nbsp; Last updated June 2025
-        </footer>
+{% if videos %}
+<div class="d-flex flex-column gap-3">
+  {% for video in videos %}
+  <div class="card p-3">
+    <div class="d-flex gap-3 align-items-center">
+      <img src="{{ video.thumbnail }}" width="200" class="rounded">
+      <div class="flex-grow-1">
+        <h5>{{ video.title }} {% if video.downloaded %}<span class="text-success">✔</span>{% endif %}</h5>
+{% if session.get("username") %}
+  <button class="btn btn-success" onclick="openModal('{{ video.video_id }}', '{{ video.title | escape }}')">Download</button>
+{% else %}
+  <span class="badge bg-secondary">Login to Download</span>
+{% endif %}
+      </div>
     </div>
-</body>
-</html>
-
-<!-- Disclaimer Modal: Appears on first visit -->
-<!-- This modal warns users about Creative Commons restrictions and requires agreement -->
-<div id="myModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Disclaimer</h2>
-        <p>This site only allows downloads for academic use from videos marked as <strong>Creative Commons</strong>.</p>
-        <p>By clicking "I Agree" you confirm you accept 
-            <a href="https://www.youtube.com/t/terms" target="_blank">YouTube's Terms of Service</a>.
-        </p>
-        <div style="margin-top: 20px;">
-            <button onclick="agreeDisclaimer()">I Agree</button>
-            <button onclick="exitSite()" style="background:red; color:white; margin-left: 10px;">Exit</button>
-        </div>
-    </div>
+  </div>
+  {% endfor %}
 </div>
+{% endif %}
+{% endblock %}
 
-<!-- Modal Styling -->
-<style>
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    background-color: rgba(0,0,0,0.8);
-}
 
-.modal-content {
-    background-color: #fff;
-    margin: auto;
-    padding: 20px;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 600px;
-    font-family: Arial;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-}
-.close:hover,
-.close:focus {
-    color: black;
-}
-</style>
-
-<!-- Modal Script Logic -->
-<script>
-var modal = document.getElementById("myModal");
-var span = document.getElementsByClassName("close")[0];
-
-// Show modal unless user has previously agreed
-if (localStorage.getItem("disclaimerAgreed") === "true") {
-    modal.style.display = "none";
-    document.body.style.overflow = "auto";
-} else {
-    modal.style.display = "block";
-    document.body.style.overflow = "hidden";
-}
-
-// Exit site if modal closed without agreement
-span.onclick = function () {
-    exitSite();
-};
-
-// User agrees to terms
-function agreeDisclaimer() {
-    localStorage.setItem("disclaimerAgreed", "true");
-    modal.style.display = "none";
-    document.body.style.overflow = "auto";
-}
-
-// Redirect to Google if user exits
-function exitSite() {
-    alert("You must agree to use this site.");
-    window.location.href = "https://www.google.com";
-}
-</script>
