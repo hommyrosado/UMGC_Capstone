@@ -7,16 +7,34 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   {% block head %}{% endblock %}
 </head>
-<body class="bg-light py-5">
-  <div class="container bg-white p-4 rounded shadow">
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-      {{ messages[0] }}
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<body class="bg-light py-3">
+<!-- Disclaimer Modal: Appears on first visit -->
+<div id="disclaimerModal" class="modal" style="display:none; position:fixed; z-index:1055; left:0; top:0; width:100%; height:100%; overflow:auto; background-color: rgba(0,0,0,0.4);">
+  <div class="modal-content bg-white p-4 rounded shadow" style="margin:15% auto; max-width:400px; position:relative;">
+    <span class="close" onclick="exitSite()" style="position:absolute; top:10px; right:15px; font-size:28px; cursor:pointer;">&times;</span>
+    <h4>Disclaimer</h4>
+    <p>This site only allows downloads for academic use from videos marked as <strong>Creative Commons</strong>.</p>
+    <p>By clicking "I Agree" you confirm you accept
+      <a href="https://www.youtube.com/t/terms" target="_blank">YouTube's Terms of Service</a>.
+    </p>
+    <div class="d-flex justify-content-end gap-2 mt-3">
+      <button class="btn btn-success btn-sm" onclick="agreeDisclaimer()">I Agree</button>
+      <button class="btn btn-danger btn-sm" onclick="exitSite()">Exit</button>
     </div>
-  {% endif %}
-{% endwith %}
+  </div>
+</div>
+
+  <div class="container bg-white p-3 p-sm-4 rounded shadow">
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          {{ messages[0] }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endif %}
+    {% endwith %}
+
     {% if session.get("username") %}
       <div class="mb-3 text-end">
         <span class="text-muted">Welcome, {{ session['username'] }}!</span>
@@ -30,43 +48,39 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title text-white" id="offcanvasNavbarLabel">Menu</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
-          <div class="offcanvas-body d-flex justify-content-between align-items-center w-100">
-<ul class="navbar-nav flex-grow-1 pe-3">
-  <li class="nav-item">
-    <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">Home</a>
-  </li>
-
-  {% if session.get("username") %}
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Playlists</a>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="/playlists">View All</a></li>
-      <li><a class="dropdown-item" href="/create_playlist">Create New</a></li>
-    </ul>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link {% if '/history' in request.path %}active{% endif %}" href="/history">History</a>
-  </li>
-  {% endif %}
-
-  <li class="nav-item">
-    <a class="nav-link" href="?modal=about" data-bs-toggle="modal" data-bs-target="#aboutModal" data-show="about">About</a>
-  </li>
-</ul>
-
-
-<div class="d-flex gap-2">
-  {% if session.get("username") %}
-    <a href="/logout" class="btn btn-outline-danger">Logout</a>
-  {% else %}
-    <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
-  {% endif %}
-</div>
+          <div class="offcanvas-body d-flex flex-column justify-content-between w-100">
+            <ul class="navbar-nav flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link text-white {% if request.path == '/' %}active{% endif %}" href="/">Home</a>
+              </li>
+              {% if session.get("username") %}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Playlists</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="/playlists">View All</a></li>
+                  <li><a class="dropdown-item" href="/create_playlist">Create New</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white {% if '/history' in request.path %}active{% endif %}" href="/history">History</a>
+              </li>
+              {% endif %}
+              <li class="nav-item">
+                <a class="nav-link text-white" href="?modal=about" data-bs-toggle="modal" data-bs-target="#aboutModal" data-show="about">About</a>
+              </li>
+            </ul>
+            <div class="d-flex gap-2 mt-3">
+              {% if session.get("username") %}
+                <a href="/logout" class="btn btn-outline-light btn-sm">Logout</a>
+              {% else %}
+                <button class="btn btn-outline-light btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+              {% endif %}
+            </div>
           </div>
         </div>
       </div>
@@ -134,82 +148,53 @@
       </div>
     </div>
   </div>
-  <!-- Footer -->
+
   <footer class="text-center mt-5 pt-4 border-top small text-muted">
     <strong>Developed by:</strong><br>
     Lane, Nicolas | Hardwick, Sierra<br>
     Leal, Joshua | Moriggia, Anthony | Rosado, Hommy<br><br>
     UMGC CMSC 495 &nbsp;|&nbsp; Last updated May 2025
   </footer>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
   {% block scripts %}
-  <script>
-    // Persistent About modal
-    window.addEventListener("DOMContentLoaded", () => {
-      const params = new URLSearchParams(window.location.search);
-      if (params.get("modal") === "about") {
-        new bootstrap.Modal(document.getElementById("aboutModal")).show();
-      }
+<script>
+  // Disclaimer logic
+  function agreeDisclaimer() {
+    localStorage.setItem("disclaimerAccepted", "true");
+    document.getElementById("disclaimerModal").style.display = "none";
+  }
 
-      document.querySelectorAll("[data-show='about']").forEach(el => {
-        el.addEventListener("click", e => {
-          e.preventDefault();
-          history.pushState({}, "", "?modal=about");
-          new bootstrap.Modal(document.getElementById("aboutModal")).show();
-        });
+  function exitSite() {
+    window.location.href = "https://www.youtube.com";
+  }
+
+  // Existing DOMContentLoaded block
+  window.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("modal") === "about") {
+      new bootstrap.Modal(document.getElementById("aboutModal")).show();
+    }
+
+    document.querySelectorAll("[data-show='about']").forEach(el => {
+      el.addEventListener("click", e => {
+        e.preventDefault();
+        history.pushState({}, "", "?modal=about");
+        new bootstrap.Modal(document.getElementById("aboutModal")).show();
       });
     });
 
-    // Download logic
-    let selectedVideoId = null;
-    let progressInterval = null;
-    const downloadModal = new bootstrap.Modal(document.getElementById("downloadModal"));
+    // ✅ Show disclaimer if not previously accepted
+    // if (!localStorage.getItem("disclaimerAccepted")) {
+    //   document.getElementById("disclaimerModal").style.display = "block";
+    localStorage.removeItem("disclaimerAccepted"); // Optional: reset the flag
+    document.getElementById("disclaimerModal").style.display = "block";
 
-    function openModal(videoId, title) {
-      selectedVideoId = videoId;
-      document.getElementById("videoTitle").innerText = title;
-      document.getElementById("progressBarFill").style.width = "0%";
-      downloadModal.show();
-    }
+    // }
+  });
+</script>
 
-    function startDownload() {
-      let fill = document.getElementById("progressBarFill");
-      let percent = 0;
-
-      progressInterval = setInterval(() => {
-        if (percent < 90) {
-          percent += 5;
-          fill.style.width = percent + "%";
-        }
-      }, 300);
-
-      fetch("/start_download", {
-        method: "POST",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ video_id: selectedVideoId })
-      })
-      .then(response => response.json())
-      .then(data => {
-        clearInterval(progressInterval);
-        if (data.success) {
-          fill.style.width = "100%";
-          setTimeout(() => {
-            alert(`Video downloaded to server as ${data.filename}.`);
-            downloadModal.hide();
-            location.reload();
-          }, 500);
-        } else {
-          alert("Download failed: " + data.error);
-          downloadModal.hide();
-        }
-      })
-      .catch(err => {
-        alert("Error: " + err);
-        downloadModal.hide();
-      });
-    }
-  </script>
   {% endblock %}
 </body>
 </html>

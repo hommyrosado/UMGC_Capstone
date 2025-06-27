@@ -4,25 +4,30 @@
 
 {% block content %}
 <form method="POST" class="mb-4">
-  <div class="input-group">
-    <input type="text" name="query" class="form-control" placeholder="Search topic or paste YouTube URL..." required>
-    <button class="btn btn-primary" type="submit">Search</button>
+  <div class="input-group input-group-sm">
+    <input type="text" name="query" class="form-control form-control-sm" placeholder="Search topic or paste YouTube URL..." required>
+    <button class="btn btn-primary btn-sm" type="submit">Search</button>
   </div>
 </form>
 
 {% if videos %}
 <div class="d-flex flex-column gap-3">
   {% for video in videos %}
-  <div class="card p-3">
-    <div class="d-flex gap-3 align-items-center">
-      <img src="{{ video.thumbnail }}" width="200" class="rounded">
-      <div class="flex-grow-1">
-        <h5>{{ video.title }} {% if video.downloaded %}<span class="text-success">✔</span>{% endif %}</h5>
-{% if session.get("username") %}
-  <button class="btn btn-success" onclick="openModal('{{ video.video_id }}', '{{ video.title | escape }}')">Download</button>
-{% else %}
-  <span class="badge bg-secondary">Login to Download</span>
-{% endif %}
+  <div class="card p-2 p-sm-3">
+    <div class="row g-2">
+      <div class="col-4 col-sm-3 col-md-2">
+        <img src="{{ video.thumbnail }}" class="img-fluid rounded">
+      </div>
+      <div class="col">
+        <h6 class="mb-2">{{ video.title }} {% if video.downloaded %}<span class="text-success">✔</span>{% endif %}</h6>
+        {% if session.get("username") %}
+          <button class="btn btn-success btn-sm" onclick="openModal('{{ video.video_id }}', '{{ video.title | escape }}')">Download</button>
+        {% else %}
+<span class="badge bg-secondary" role="button" data-bs-toggle="modal" data-bs-target="#loginModal">
+  Login to Download
+</span>
+
+        {% endif %}
       </div>
     </div>
   </div>
@@ -30,5 +35,3 @@
 </div>
 {% endif %}
 {% endblock %}
-
-
