@@ -17,34 +17,34 @@
 
 | Explanation |  |
 |------------|-------------|
-| Home Page | ![alt text](image.png) |
+| Home Page | ![alt text](UserGuide_Images/image.png) |
 |------------|-------------|
-| Disclaimer | ![alt text](image-1.png) |
+| Disclaimer | ![alt text](UserGuide_Images/image-1.png) |
 |------------|-------------|
-| Download Non-Registered 1 | ![alt text](image-2.png)|
+| Download Non-Registered 1 | ![alt text](UserGuide_Images/image-2.png)|
 |------------|-------------|
-| Download Non-Registered 2 | ![alt text](image-3.png)|
+| Download Non-Registered 2 | ![alt text](UserGuide_Images/image-3.png)|
 |------------|-------------|
-| Attempt to Download Non-Registered | ![alt text](image-4.png) |
+| Attempt to Download Non-Registered | ![alt text](UserGuide_Images/image-4.png) |
 |------------|-------------|
-| Menu Options Non-Registered  | ![alt text](image-5.png) |
+| Menu Options Non-Registered  | ![alt text](UserGuide_Images/image-5.png) |
 |------------|-------------|
-| Registration | ![alt text](image-6.png) |
+| Registration | ![alt text](UserGuide_Images/image-6.png) |
 |------------|-------------|
-| Registered User View | ![alt text](image-7.png)|
+| Registered User View | ![alt text](UserGuide_Images/image-7.png)|
 |------------|-------------|
-| Registered User Search | ![alt text](image-8.png) |
+| Registered User Search | ![alt text](UserGuide_Images/image-8.png) |
 |------------|-------------|
-| Download Modal | ![alt text](image-9.png) |
+| Download Modal | ![alt text](UserGuide_Images/image-9.png) |
 |------------|-------------|
-| Download Completion | ![alt text](image-10.png) |
+| Download Completion | ![alt text](UserGuide_Images/image-10.png) |
 |------------|-------------|
-| Registered User Menu | ![alt text](image-11.png) |
+| Registered User Menu | ![alt text](UserGuide_Images/image-11.png) |
 |------------|-------------|
-| Playlists | ![alt text](image-12.png) |
+| Playlists | ![alt text](UserGuide_Images/image-12.png) |
 |------------|-------------|
-| Non-Registered User Access to Playlist | ![alt text](image-13.png) |
+| Non-Registered User Access to Playlist | ![alt text](UserGuide_Images/image-13.png) |
 |------------|-------------|
-| Playlist - Expanded | ![alt text](image-14.png) |
+| Playlist - Expanded | ![alt text](UserGuide_Images/image-14.png) |
 |------------|-------------|
-| About thi App | ![alt text](image-15.png) |
+| About thi App | ![alt text](UserGuide_Images/image-15.png) |
