@@ -24,7 +24,14 @@ This is a Flask-based web application that allows users to download videosfrom p
 - JSON 
 
 TODO:
+- 🚨 **URGENT** Addent a UserGuide template with screen captures in a mark down format. Can be updated from another User Guide or be used as main User Guide. Mark Downn is lightweight and can be "packaged" with app as User Guide. [Theoretically]
 Added the following [feature/errorLogging] branch:
+- Added the following features:
+  - Only registered users can download. User can conduct search, but instead of download button, it will read 'Login in to Download'. If they click it, the Login modal window will show.
+  - Only registered users can see playlist
+  - Disclaimer WILL show often just for testing purposes.
+  - Worked on @media rules to ensure site works on iPhone XE size
+
 - 🚨 **URGENT** Implimented the yt-dlp Python API. Had to rewrite application foundation code. All efforts did not allow video downloading.
 - 🚨 **URGENT** Ensure that the .secrets folder is created with .env internal file with the API key.
 - ✅ History folder to document history of downloaded videos. This JSON file is read, and if the video in the search results has already been downloaded, then a check mark indicator (or any we deam appropriate) shows in the results. This will help for the creation of a Playlist
