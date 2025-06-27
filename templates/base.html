@@ -24,141 +24,141 @@
   </div>
 </div>
 
-  <div class="container bg-white p-3 p-sm-4 rounded shadow">
-
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-          {{ messages[0] }}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-      {% endif %}
-    {% endwith %}
-
-    {% if session.get("username") %}
-      <div class="mb-3 text-end">
-        <span class="text-muted">Welcome, {{ session['username'] }}!</span>
+<div class="container bg-white p-3 p-sm-4 rounded shadow">
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ messages[0] }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     {% endif %}
+  {% endwith %}
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-white border rounded shadow-sm mb-4">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/">YouTube Downloader</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-          <div class="offcanvas-header border-bottom">
-            <h5 class="offcanvas-title text-white" id="offcanvasNavbarLabel">Menu</h5>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          </div>
-          <div class="offcanvas-body d-flex flex-column justify-content-between w-100">
-            <ul class="navbar-nav flex-grow-1 pe-3">
-              <li class="nav-item">
-                <a class="nav-link text-white {% if request.path == '/' %}active{% endif %}" href="/">Home</a>
-              </li>
-              {% if session.get("username") %}
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Playlists</a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="/playlists">View All</a></li>
-                  <li><a class="dropdown-item" href="/create_playlist">Create New</a></li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white {% if '/history' in request.path %}active{% endif %}" href="/history">History</a>
-              </li>
-              {% endif %}
-              <li class="nav-item">
-                <a class="nav-link text-white" href="?modal=about" data-bs-toggle="modal" data-bs-target="#aboutModal" data-show="about">About</a>
-              </li>
-            </ul>
-            <div class="d-flex gap-2 mt-3">
-              {% if session.get("username") %}
-                <a href="/logout" class="btn btn-outline-light btn-sm">Logout</a>
-              {% else %}
-                <button class="btn btn-outline-light btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
-              {% endif %}
-            </div>
+  {% if session.get("username") %}
+    <div class="mb-3 text-end">
+      <span class="text-muted">Welcome, {{ session['username'] }}!</span>
+    </div>
+  {% endif %}
+
+  <!-- Navbar -->
+<!--  <nav class="navbar navbar-expand-lg bg-white border rounded shadow-sm mb-4">-->
+  <nav class="navbar bg-white border rounded shadow-sm mb-4">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">YouTube Downloader</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header border-bottom">
+          <h5 class="offcanvas-title text-white" id="offcanvasNavbarLabel">Menu</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column justify-content-between w-100">
+          <ul class="navbar-nav flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link text-white {% if request.path == '/' %}active{% endif %}" href="/">Home</a>
+            </li>
+            {% if session.get("username") %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Playlists</a>
+              <ul class="dropdown-menu dropdown-menu-dark">
+                <li><a class="dropdown-item" href="/playlists">View All</a></li>
+                <li><a class="dropdown-item" href="/create_playlist">Create New</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white {% if '/history' in request.path %}active{% endif %}" href="/history">History</a>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+              <a class="nav-link text-white" href="?modal=about" data-bs-toggle="modal" data-bs-target="#aboutModal" data-show="about">About</a>
+            </li>
+          </ul>
+          <div class="d-flex gap-2 mt-3">
+            {% if session.get("username") %}
+              <a href="/logout" class="btn btn-outline-light btn-sm">Logout</a>
+            {% else %}
+              <button class="btn btn-outline-light btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+            {% endif %}
           </div>
         </div>
       </div>
-    </nav>
-
-    {% block content %}{% endblock %}
-  </div>
-
-  <!-- Login Modal -->
-  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <form class="modal-content bg-dark text-light" method="POST" action="/login">
-        <div class="modal-header border-0">
-          <h5 class="modal-title" id="loginModalLabel">Please sign in</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="mb-3">
-            <label for="email" class="form-label">Email address</label>
-            <input type="email" class="form-control bg-dark text-light border-secondary" id="email" name="email" required>
-          </div>
-          <div class="form-check mb-3">
-            <input type="checkbox" class="form-check-input" id="remember">
-            <label class="form-check-label" for="remember">Remember me</label>
-          </div>
-        </div>
-        <div class="modal-footer border-0">
-          <button type="submit" class="btn btn-primary w-100">Sign in</button>
-        </div>
-      </form>
     </div>
-  </div>
+  </nav>
 
-  <!-- About Modal -->
-  <div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content p-4">
-        <div class="modal-header">
-          <h5 class="modal-title" id="aboutModalLabel">About This App</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  {% block content %}{% endblock %}
+</div>
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <form class="modal-content bg-dark text-light" method="POST" action="/login">
+      <div class="modal-header border-0">
+        <h5 class="modal-title" id="loginModalLabel">Please sign in</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" class="form-control bg-dark text-light border-secondary" id="email" name="email" required>
         </div>
-        <div class="modal-body">
-          <p>The <strong>Automatic YouTube Downloader</strong> is intended for <strong>students and/or teachers</strong> who want easier access to academic videos from specific channels or playlists.</p>
+        <div class="form-check mb-3">
+          <input type="checkbox" class="form-check-input" id="remember">
+          <label class="form-check-label" for="remember">Remember me</label>
         </div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
+      </div>
+      <div class="modal-footer border-0">
+        <button type="submit" class="btn btn-primary w-100">Sign in</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- About Modal -->
+<div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content p-4">
+      <div class="modal-header">
+        <h5 class="modal-title" id="aboutModalLabel">About This App</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>The <strong>Automatic YouTube Downloader</strong> is intended for <strong>students and/or teachers</strong> who want easier access to academic videos from specific channels or playlists.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- Download Modal -->
-  <div class="modal fade" id="downloadModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content text-center p-4">
-        <h5 class="modal-title">Confirm Download</h5>
-        <p>Download: <strong id="videoTitle"></strong>?</p>
-        <div class="progress mb-3">
-          <div id="progressBarFill" class="progress-bar" role="progressbar"></div>
-        </div>
-        <div class="d-grid gap-2">
-          <button class="btn btn-primary" onclick="startDownload()">Download</button>
-          <button class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-        </div>
+<!-- Download Modal -->
+<div class="modal fade" id="downloadModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-center p-4">
+      <h5 class="modal-title">Confirm Download</h5>
+      <p>Download: <strong id="videoTitle"></strong>?</p>
+      <div class="progress mb-3">
+        <div id="progressBarFill" class="progress-bar" role="progressbar"></div>
+      </div>
+      <div class="d-grid gap-2">
+        <button class="btn btn-primary" onclick="startDownload()">Download</button>
+        <button class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
       </div>
     </div>
   </div>
+</div>
 
-  <footer class="text-center mt-5 pt-4 border-top small text-muted">
-    <strong>Developed by:</strong><br>
-    Lane, Nicolas | Hardwick, Sierra<br>
-    Leal, Joshua | Moriggia, Anthony | Rosado, Hommy<br><br>
-    UMGC CMSC 495 &nbsp;|&nbsp; Last updated May 2025
-  </footer>
+<footer class="text-center mt-5 pt-4 border-top small text-muted">
+  <strong>Developed by:</strong><br>
+  Lane, Nicolas | Hardwick, Sierra<br>
+  Leal, Joshua | Moriggia, Anthony | Rosado, Hommy<br><br>
+  UMGC CMSC 495 &nbsp;|&nbsp; Last updated May 2025
+</footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  {% block scripts %}
+{% block scripts %}
 <script>
   // Disclaimer logic
   function agreeDisclaimer() {
@@ -170,7 +170,6 @@
     window.location.href = "https://www.youtube.com";
   }
 
-  // Existing DOMContentLoaded block
   window.addEventListener("DOMContentLoaded", () => {
     const params = new URLSearchParams(window.location.search);
     if (params.get("modal") === "about") {
@@ -185,16 +184,11 @@
       });
     });
 
-    // ✅ Show disclaimer if not previously accepted
-    // if (!localStorage.getItem("disclaimerAccepted")) {
-    //   document.getElementById("disclaimerModal").style.display = "block";
-    localStorage.removeItem("disclaimerAccepted"); // Optional: reset the flag
+    // Force disclaimer for testing
+    localStorage.removeItem("disclaimerAccepted");
     document.getElementById("disclaimerModal").style.display = "block";
-
-    // }
   });
 </script>
-
-  {% endblock %}
+{% endblock %}
 </body>
 </html>
