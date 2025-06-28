@@ -87,14 +87,14 @@ The UI includes the following elements:
 | Explanation | Screenshot |
 |-------------|------------|
 | Home Page | ![Home](UserGuide_Images/image.png) |
-| Disclaimer | ![Disclaimer](UserGuide_Images/image-1.png) |
-| Download Non-Registered 1 | ![Step 1](UserGuide_Images/image-2.png) |
-| Download Non-Registered 2 | ![Step 2](UserGuide_Images/image-3.png) |
-| Attempt to Download Non-Registered | ![Warning](UserGuide_Images/image-4.png) |
-| Menu Options Non-Registered | ![Menu](UserGuide_Images/image-5.png) |
-| Registration | ![Register](UserGuide_Images/image-6.png) |
-| Registered User View | ![View](UserGuide_Images/image-7.png) |
-| Registered User Search | ![Search](UserGuide_Images/image-8.png) |
+| Disclaimer - Users must agree to the disclaimer or they will be redirected. | ![Disclaimer](UserGuide_Images/image-1.png) |
+| Use the menu shown as 3 stacked horizontal lines in the top right. Then use the login button at the botton of the screen to login. | ![Menu](UserGuide_Images/image-5.png) |
+| Register a new account or log in with existing email. | ![Register](UserGuide_Images/image-6.png) |
+| Registered User View (email shows in top right corner) | ![View](UserGuide_Images/image-7.png) |
+| Enter keywords into search bar to find desired video. | ![Step 1](UserGuide_Images/image-2.png) |
+| Searching while logged in will show a green download button next to videos. | ![Search](UserGuide_Images/image-8.png) |
+| If not already logged in, click "login to download" on any video to receive login prompt using an email address. | ![Step 2](UserGuide_Images/image-3.png) |
+| Sign in prompt | ![Warning](UserGuide_Images/image-4.png) |
 | Download Modal | ![Modal](UserGuide_Images/image-9.png) |
 | Download Completion | ![Complete](UserGuide_Images/image-10.png) |
 | Registered User Menu | ![Menu Registered](UserGuide_Images/image-11.png) |
