@@ -50,6 +50,9 @@ This guide is intended for students and teachers in academic environments who ne
 ## Getting Started
 
 ### Installation Instructions
+
+#### 🔧 Option 1: Local Python Setup
+
 1. Download or clone the repository from GitHub.
 2. Ensure Python 3 is installed on your system.
 3. Install required dependencies using:
@@ -60,6 +63,43 @@ This guide is intended for students and teachers in academic environments who ne
    ```bash
    python app.py
    ```
+
+#### 🚣 Option 2: Run with Docker
+
+##### **Step 1: Download the Docker image**
+
+- Visit the GitHub release or storage link containing the file:\
+  `umgc-capstone-app.tar`
+- Click the download button (as shown in the image below) to save the `.tar` file locally.
+
+
+
+##### **Step 2: Load the Docker image**
+
+Open a terminal and run:
+
+```bash
+docker load -i umgc-capstone-app.tar
+```
+
+##### **Step 3: Run the Docker container**
+
+```bash
+docker run -d -p 5000:5000 --name umgc-app umgc-capstone-app
+```
+
+> The application will now be available at `http://localhost:5000` in your browser.
+
+##### **Optional Docker Commands**
+
+- Stop the container:
+  ```bash
+  docker stop umgc-app
+  ```
+- Remove the container:
+  ```bash
+  docker rm umgc-app
+  ```
 
 ### System Requirements
 - **Operating System:** Windows or any Python-compatible OS
