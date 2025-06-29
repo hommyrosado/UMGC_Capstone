@@ -134,14 +134,14 @@ The UI includes the following elements:
 | Enter keywords into search bar to find desired video. | ![Step 1](UserGuide_Images/image-2.png) |
 | Searching while logged in will show a green download button next to videos. | ![Search](UserGuide_Images/image-8.png) |
 | If not already logged in, click "login to download" on any video to receive login prompt using an email address. | ![Step 2](UserGuide_Images/image-3.png) |
-| Sign in prompt | ![Warning](UserGuide_Images/image-4.png) |
-| Download Modal | ![Modal](UserGuide_Images/image-9.png) |
-| Download Completion | ![Complete](UserGuide_Images/image-10.png) |
-| Registered User Menu | ![Menu Registered](UserGuide_Images/image-11.png) |
+| Sign in prompt. | ![Warning](UserGuide_Images/image-4.png) |
+| Click download on the download modal to confirm download. | ![Modal](UserGuide_Images/image-9.png) |
+| Prompt will appear confirming download. | ![Complete](UserGuide_Images/image-10.png) |
+| Navigate back to the menu. Logged in users can view or create new playlists. | ![Menu Registered](UserGuide_Images/image-11.png) |
 | Playlists | ![Playlists](UserGuide_Images/image-12.png) |
-| Non-Registered User Access to Playlist | ![Blocked](UserGuide_Images/image-13.png) |
-| Playlist - Expanded | ![Expanded](UserGuide_Images/image-14.png) |
-| About this App | ![About](UserGuide_Images/image-15.png) |
+| Users must be logged in to view or create playlists. (see step 3) | ![Blocked](UserGuide_Images/image-13.png) |
+| Playlist - Expanded with view feature | ![Expanded](UserGuide_Images/image-14.png) |
+| About section describing app purpose located in menu. | ![About](UserGuide_Images/image-15.png) |
 
 ### Troubleshooting Tips
 - **Download fails**: Check if the video has a Creative Commons license.
