@@ -184,13 +184,12 @@
       });
     });
 
-    // Force disclaimer for testing
-    // localStorage.removeItem("disclaimerAccepted");
-    // document.getElementById("disclaimerModal").style.display = "block";
     if (!localStorage.getItem("disclaimerAccepted")) {
-  document.getElementById("disclaimerModal").style.display = "block";
+      document.getElementById("disclaimerModal").style.display = "block";
+    }
   });
 </script>
+
 {% endblock %}
 </body>
 </html>
