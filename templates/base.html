@@ -184,11 +184,61 @@
       });
     });
 
+    // Force disclaimer for testing
+    // localStorage.removeItem("disclaimerAccepted");
+    // document.getElementById("disclaimerModal").style.display = "block";
     if (!localStorage.getItem("disclaimerAccepted")) {
       document.getElementById("disclaimerModal").style.display = "block";
     }
   });
 </script>
+<script>
+  let currentVideoId = null;
+  let currentVideoTitle = null;
+
+  function openModal(videoId, videoTitle) {
+    currentVideoId = videoId;
+    currentVideoTitle = videoTitle;
+    document.getElementById("videoTitle").textContent = videoTitle;
+    document.getElementById("progressBarFill").style.width = "0%";
+    new bootstrap.Modal(document.getElementById("downloadModal")).show();
+  }
+
+  async function startDownload() {
+    const progressBar = document.getElementById("progressBarFill");
+    progressBar.classList.add("progress-bar-striped", "progress-bar-animated");
+    progressBar.style.width = "30%";
+
+    try {
+      const response = await fetch("/start_download", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ video_id: currentVideoId })
+      });
+      const result = await response.json();
+
+      if (result.success) {
+        progressBar.style.width = "100%";
+        progressBar.classList.remove("progress-bar-animated");
+        progressBar.classList.add("bg-success");
+        setTimeout(() => {
+          window.location.href = `/download_file/${result.filename}`;
+        }, 1000);
+      } else {
+        alert("Download failed: " + result.error);
+        progressBar.classList.remove("progress-bar-animated");
+        progressBar.classList.add("bg-danger");
+        progressBar.style.width = "100%";
+      }
+    } catch (err) {
+      alert("Unexpected error occurred.");
+      progressBar.classList.remove("progress-bar-animated");
+      progressBar.classList.add("bg-danger");
+      progressBar.style.width = "100%";
+    }
+  }
+</script>
+
 
 {% endblock %}
 </body>
